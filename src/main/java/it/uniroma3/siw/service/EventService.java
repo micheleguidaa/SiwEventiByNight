@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import it.uniroma3.siw.model.Event;
 import it.uniroma3.siw.repository.EventRepository;
 
-
-
 @Service
 public class EventService {
 	
