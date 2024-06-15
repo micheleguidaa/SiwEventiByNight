@@ -137,7 +137,7 @@ footer {
 
 /* Image Styles */
 .img,
-.img-lg
+.img-lg,
 .account-icon {
     width: 100%;
     object-fit: cover;
