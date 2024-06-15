@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Credenziali;
+import it.uniroma3.siw.model.Cuoco;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.UserRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +25,12 @@ public class UserService {
 
     @Autowired
     protected UserRepository userRepository;
+    
+    @Autowired
+    private CredentialsService credentialsService;
+    
+    private static final String UPLOADED_FOLDER = "uploads/utenti2/";
+    private static final String DEFAULT_IMAGE = "/images/default/senzaFoto.jpeg";
 
     /**
      * This method retrieves a User from the DB based on its ID.
@@ -56,4 +67,20 @@ public class UserService {
             result.add(user);
         return result;
     }
+    
+    @Transactional
+    public void registerUser(User user, Credentials credentials, MultipartFile file) throws IOException {
+            if (file.isEmpty()) {
+                user.setUrlImage(DEFAULT_IMAGE);
+            } else {
+                String fileUrl = fileService.saveFile(file, UPLOADED_FOLDER);
+                user.setUrlImage(fileUrl);
+            }
+            credentials.setUser(user);
+            credentials.setRole(Credentials.DEFAULT_ROLE);
+            
+            saveUser(user);
+            credentialsService.saveCredentials(credentials); 
+        }
+    
 }

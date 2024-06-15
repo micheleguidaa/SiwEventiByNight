@@ -1,5 +1,7 @@
 package it.uniroma3.siw.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,11 +13,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -26,13 +33,11 @@ public class AuthenticationController {
 
     @Autowired
 	private UserService userService;
+
+    
+    @Autowired
+    private CredentialsValidator credentialsValidator;
 	
-	@GetMapping(value = "/register") 
-	public String showRegisterForm (Model model) {
-		model.addAttribute("user", new User());
-		model.addAttribute("credentials", new Credentials());
-		return "formRegisterUser";
-	}
 	
 	@GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {
@@ -66,21 +71,46 @@ public class AuthenticationController {
         return "index.html";
     }
 
-	@PostMapping(value = { "/register" })
-    public String registerUser(@Valid @ModelAttribute("user") User user,
-                 BindingResult userBindingResult, @Valid
-                 @ModelAttribute("credentials") Credentials credentials,
-                 BindingResult credentialsBindingResult,
-                 Model model) {
+    @GetMapping("/register")
+	public String formNewCuoco(HttpServletRequest request, HttpSession session, Model model) {
+	    String referer = request.getHeader("Referer");
+	    if (referer != null) {
+	        session.setAttribute("prevPage", referer);
+	    }
+	    model.addAttribute("user", new User());
+	    model.addAttribute("credentials", new Credentials());
+	    return "formRegister";
+	}
+	
 
-		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
-        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
-            userService.saveUser(user);
-            credentials.setUser(user);
-            credentialsService.saveCredentials(credentials);
-            model.addAttribute("user", user);
-            return "registrationSuccessful";
-        }
-        return "registerUser";
-    }
+	@PostMapping("/register")
+	public String registerCuoco(@Valid @ModelAttribute("user") User user,
+	                            BindingResult cuocoBindingResult, 
+	                            @ModelAttribute("credentials") Credentials credentials,
+	                            BindingResult credenzialiBindingResult,
+	                            @RequestParam("fileImage") MultipartFile file,
+	                            HttpSession session,
+	                            Model model) {
+	    this.credentialsValidator.validate(credentials, credenzialiBindingResult);
+	    // se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
+	    if (!cuocoBindingResult.hasErrors() && !credenzialiBindingResult.hasErrors()) {
+	        try {
+	        	userService.registerUser(user, credentials, file);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            model.addAttribute("fileUploadError", "Errore nel caricamento dell'immagine");
+	            return "formRegisterCuoco";
+	        }
+	        model.addAttribute("cuoco", user);
+	        
+	        // Reindirizza alla pagina precedente
+	        String prevPage = (String) session.getAttribute("prevPage");
+	        if (prevPage != null) {
+	            session.removeAttribute("prevPage"); // Rimuovi l'URL dalla sessione
+	            return "redirect:" + prevPage;
+	        }
+	        return "login";
+	    }
+	    return "formRegister";
+	}
 }

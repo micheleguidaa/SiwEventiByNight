@@ -10,7 +10,7 @@
 	</div>
 	<div class="container form-container mt-5">
 		<h2 class="text-center mb-4">Registrazione</h2>
-		<form th:action="@{/registerUser}" method="post" enctype="multipart/form-data" th:object="${credentials}">
+		<form th:action="@{/register}" method="post" enctype="multipart/form-data" th:object="${credentials}">
 			
 			<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger text-center" role="alert">
 				<p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="mb-0">...</p>
@@ -28,7 +28,7 @@
 						<div class="card-body p-0">
 							<div class="image-container">
 								<img src="/images/default/senzaFoto.jpeg" class="rounded cuoco-img" alt="Immagine Utente"
-									id="cuocoImagePreview" />
+									id="utenteImagePreview" />
 							</div>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 	<!-- Script per la preview dell'immagine -->
 	<script>
 		function loadFile(event) {
-			var image = document.getElementById('cuocoImagePreview');
+			var image = document.getElementById('utenteImagePreview');
 			image.src = URL.createObjectURL(event.target.files[0]);
 		}
 
