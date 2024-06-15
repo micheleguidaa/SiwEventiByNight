@@ -18,33 +18,33 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-					<!-- Inizio Elementi visibili per utenti non registrati e cuohi  -->
+					<!-- Inizio Elementi visibili per utenti  -->
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo != 'ADMIN'}" href="/locals">Locali</a>
+						<a class="nav-link" th:if="${role != 'ADMIN'}" href="/locals">Locali</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo != 'ADMIN'}" href="/events">Eventi</a>
+						<a class="nav-link" th:if="${role != 'ADMIN'}" href="/events">Eventi</a>
 					</li>
-					<!-- Fine Elementi visibili per utenti non registrati e cuohi -->
+					<!-- Fine Elementi visibili per utenti  -->
 
-					<!-- Inizio Elementi visibili per cuohi -->
+					<!-- Inizio Elementi visibili per utenti Registrati -->
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo == 'DEFAULT'}" href="/leMieRicette"> Le mie prenotazioni</a>
+						<a class="nav-link" th:if="${role == 'DEFAULT'}" href="/reservations">Prenotazioni</a>
 					</li>
-					<!-- Fine Elementi visibili per cuohi -->
+					<!-- Fine Elementi visibili per utenti Registrati  -->
 
 					<!-- Inizio Elementi visibili per admin -->
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo == 'ADMIN'}" href="/admin/ricette">Locali</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ricette">Locali</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo == 'ADMIN'}" href="/admin/cuochi">Eventi</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/cuochi">Eventi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo == 'ADMIN'}" href="/admin/ingredienti">Utenti</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ingredienti">Utenti</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${ruolo == 'ADMIN'}" href="/admin/ingredienti">Proprietari</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ingredienti">Proprietari</a>
 					</li>
 					<!-- Fine Elementi visibili per admin -->
 				</ul>
