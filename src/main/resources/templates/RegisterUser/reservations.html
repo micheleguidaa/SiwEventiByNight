@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head th:replace="~{fragments/header :: header(title='SiwFood - Eventi')}"></head>
 
 <body>
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <div class="container mt-5 mb-5">
-        <h1 class="mb-3 text-center">Prenotazioni</h1>
-        <div th:if="${CurrentUser.reservations==null || CurrentUser.reservations.isEmpty()}" class="alert alert-warning">
-            Non ci sono prenotazioni nel sistema
-        </div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col" th:each="reservation : ${reservations}">
-                <div class="card event-card">
-                    <div class="image-container">
-                        <img th:src="${reservation.event.urlImage}" class="img" alt="Immagine Evento" />
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title" th:text="${reservation.event.name}">Nome Evento</h5>
-                        <a th:href="@{'/event' + '/' + ${event.id}}" class="btn btn-primary mt-auto">Visualizza Evento</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Include il footer -->
+	<div class="container mt-5 mb-5">
+		<h1 class="mb-3 text-center">Prenotazioni</h1>
+		<div th:if="${CurrentUser.reservations==null || CurrentUser.reservations.isEmpty()}"
+			class="alert alert-warning">
+			Non ci sono prenotazioni nel sistema
+		</div>
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+			<div class="col" th:each="reservation : ${CurrentUser.reservations}">
+				<div class="card event-card">
+					<div class="image-container">
+						<img th:src="${reservation.event.urlImage}" class="img" alt="Immagine Evento" />
+					</div>
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title" th:text="${reservation.event.name}">Nome Evento</h5>
+						<div class="d-flex w-100">
+							<a th:href="@{'/event' + '/' + ${reservation.event.id}}"
+								class="btn btn-primary flex-grow-1 me-2">Evento</a>
+							<form th:action="@{'/cancel/reservation/' + ${reservation.id}}" method="post"
+								class="flex-grow-1">
+								<button type="submit" class="btn btn-danger w-100">Elimina</button>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Include il footer -->
 	<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 
