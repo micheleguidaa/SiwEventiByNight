@@ -21,6 +21,7 @@ public class Event {
 	private LocalDateTime endDateTime;
 	private Long cost;
 	private Long nMaxParticipants;
+	private String urlImage;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Reservation reservation;
@@ -89,5 +90,13 @@ public class Event {
 
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
 }

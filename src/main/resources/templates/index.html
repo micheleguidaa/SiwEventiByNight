@@ -6,7 +6,12 @@
 <body>
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
-
+	
+	<div class="text-center mt-5">
+		<a class="btn btn-primary btn-lg" href="/locals" role="button">Locali</a>
+		<a class="btn btn-success btn-lg" href="/events" role="button">Eventi</a>
+	</div>
+	
 	<!-- Include il footer -->
 	<div th:replace="~{fragments/footer :: footer}"></div>
 

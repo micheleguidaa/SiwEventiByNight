@@ -10,11 +10,10 @@ public class LocalController {
 	@Autowired
     private LocalService localService;
 
-    
-    // Visualizza tutte le ricette
+    // Visualizza tutti locali
     @GetMapping("/locals")
     public String showLocals(Model model) {
-        model.addAttribute("ricette", localService.findAll());
+        model.addAttribute("locals", localService.findAll());
         return "locals"; 
     }
 }
