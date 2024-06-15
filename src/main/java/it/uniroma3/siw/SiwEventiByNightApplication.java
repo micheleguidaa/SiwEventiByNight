@@ -7,11 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SiwEventiByNightApplication {
 
 	public static void main(String[] args) {
-		//prova
-		//prova3
-		//prova4
-		//prova2
 		SpringApplication.run(SiwEventiByNightApplication.class, args);
 	}
-//prova2
+
 }
