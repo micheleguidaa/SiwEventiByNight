@@ -17,6 +17,7 @@ public class Local {
     private Long id;
 	private String name;
 	private String address;
+	private List<String> urlsImages;
 	
 	@OneToMany(mappedBy = "local", cascade = CascadeType.ALL, orphanRemoval = true)  
 	private List<Event> events;
@@ -53,5 +54,13 @@ public class Local {
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	public List<String> getUrlsImages() {
+		return urlsImages;
+	}
+
+	public void setUrlsImages(List<String> urlsImages) {
+		this.urlsImages = urlsImages;
 	}
 }
