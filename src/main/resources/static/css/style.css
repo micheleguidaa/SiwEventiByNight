@@ -1,6 +1,6 @@
 :root {
     --primary-color: #8E24AA; 
-    --secondary-color: #7B1FA2; 
+    --secondary-color: #0097A7; /* Verde chiaro */
     --light-color: rgb(27, 27, 27); 
     --dark-color: rgb(75, 19, 89); 
     --hover-text-color: #B39DDB;
@@ -41,6 +41,18 @@ a {
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
 }
@@ -95,7 +107,7 @@ a {
 
 /* Footer Styles */
 footer {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 /* Recipe List Styles */
