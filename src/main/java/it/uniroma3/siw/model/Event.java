@@ -25,7 +25,7 @@ public class Event {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Reservation reservation;
 	@ManyToOne 
-	private Local locals;
+	private Local local;
 
 	public Long getId() {
 		return id;
