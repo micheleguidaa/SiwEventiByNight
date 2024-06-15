@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -17,8 +18,10 @@ public class Local {
 	private String name;
 	private String address;
 	
-	@OneToMany(mappedBy = "locals", cascade = CascadeType.ALL, orphanRemoval = true)  
+	@OneToMany(mappedBy = "local", cascade = CascadeType.ALL, orphanRemoval = true)  
 	private List<Event> events;
+	@ManyToOne 
+	private Owner owner;
 
 	public Long getId() {
 		return id;

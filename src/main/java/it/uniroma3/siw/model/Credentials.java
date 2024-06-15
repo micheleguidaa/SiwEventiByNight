@@ -21,6 +21,8 @@ public class Credentials {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Owner owner;
 	
 	public String getUsername() {
 		return username;
