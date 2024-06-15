@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head th:replace="~{fragments/header :: header(title='SiwEventi - Evento')}">
+</head>
+
+<body>
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+	<div class="container mt-5 mb-5 w-75">
+		<div class="container-info shadow-sm">
+			<div class="row g-0">
+				<div class="col-md-5 text-center">
+					<img th:src="${event.urlImage}" class="img-lg rounded" alt="Immagine Evento">
+				</div>
+				<div class="col-md-6 ms-3">
+					<div class="card-body">
+						<h5 class="card-title mb-4" th:text="${event.name}">Nome dell'evento</h5>
+						<p class="text-muted lead" th:text="'Tema: ' + ${event.theme}">Tema: Musica e Danza</p>
+						<p class="text-muted lead"
+							th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero massimo di
+							partecipanti: 200</p>
+						<p class="text-muted lead" th:text="'Data inizio: ' + ${event.startDateTime}">Data inizio:
+							2023-06-20 21:00</p>
+						<p class="text-muted lead" th:text="'Data fine: ' + ${event.endDateTime}">Data fine: 2023-06-21
+							02:00</p>
+						<p class="text-muted lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h2 class="mt-5 mb-4 text-center">Prenotazioni:</h2>
+		<div th:if="${event.reservation == null}" class="alert alert-warning">
+			Non ci sono prenotazioni per questo evento.
+		</div>
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${event.reservation != null}">
+			<div class="col">
+				<div class="card h-100">
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">Prenotazione</h5>
+						<p class="card-text">Dettagli della prenotazione</p>
+						<a th:href="@{'/reservation/' + ${event.reservation.id}}"
+							class="btn btn-primary mt-auto">Visualizza Prenotazione</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	<script src="path/to/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

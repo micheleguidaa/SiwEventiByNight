@@ -1,6 +1,6 @@
 :root {
     --primary-color: #8E24AA; 
-    --secondary-color: #0097A7; /* Verde chiaro */
+    --secondary-color: #0097A7;
     --light-color: rgb(27, 27, 27); 
     --dark-color: rgb(75, 19, 89); 
     --hover-text-color: #B39DDB;
@@ -171,4 +171,13 @@ footer {
 /* Specific Class for Image Filters */
 .remove-ingrediente img {
     filter: invert(1);
+}
+
+/* Info Container Styles */
+.container-info {
+    background-color: var(--white-color);
+    color: var(--dark-color);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--card-box-shadow);
 }

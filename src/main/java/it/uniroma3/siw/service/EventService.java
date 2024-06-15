@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,9 @@ public class EventService {
 	// Ritorna una lista di tutti gli eventi
 	public List<Event> findAll() {
 		return (List<Event>) eventRepository.findAll();
+	}
+
+	public Event findById(Long id) {
+		return eventRepository.findById(id).orElse(null);
 	}
 }
