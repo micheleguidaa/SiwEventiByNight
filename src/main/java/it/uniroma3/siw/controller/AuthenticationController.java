@@ -84,8 +84,7 @@ public class AuthenticationController {
 	
 
 	@PostMapping("/register")
-	public String registerCuoco(@Valid @ModelAttribute("user") User user,
-	                            BindingResult cuocoBindingResult, 
+	public String registerCuoco(@Valid 
 	                            @ModelAttribute("credentials") Credentials credentials,
 	                            BindingResult credenzialiBindingResult,
 	                            @RequestParam("fileImage") MultipartFile file,

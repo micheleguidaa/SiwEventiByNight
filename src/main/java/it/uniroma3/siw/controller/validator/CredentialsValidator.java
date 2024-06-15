@@ -9,7 +9,7 @@ import it.uniroma3.siw.repository.CredentialsRepository;
 
 public class CredentialsValidator implements Validator {
 	@Autowired
-	private CredentialsRepository credenzialiRepository;
+	private CredentialsRepository credentialsRepository;
 
 	@Override
     public boolean supports(Class<?> clazz) {
@@ -20,7 +20,7 @@ public class CredentialsValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Credentials credentials = (Credentials) target;
 		if (credentials.getUsername() != null && credentials.getPassword() != null
-				&& this.credenzialiRepository.existsByUsername(credentials.getUsername())) {
+				&& this.credentialsRepository.existsByUsername(credentials.getUsername())) {
 			errors.reject("credenziali.duplicate");
 		}
 	

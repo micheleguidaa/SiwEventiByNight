@@ -7,8 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Credentials;
-import it.uniroma3.siw.model.Credenziali;
-import it.uniroma3.siw.model.Cuoco;
+
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.UserRepository;
 
@@ -25,6 +24,9 @@ public class UserService {
 
     @Autowired
     protected UserRepository userRepository;
+    
+    @Autowired
+    private FileService fileService;
     
     @Autowired
     private CredentialsService credentialsService;
