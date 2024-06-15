@@ -34,11 +34,8 @@ public class AuthenticationController {
     @Autowired
 	private UserService userService;
 
-    
-    @Autowired
-    private CredentialsValidator credentialsValidator;
-	
-	
+    	
+
 	@GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {
 		return "formLogin";
@@ -79,18 +76,18 @@ public class AuthenticationController {
 	    }
 	    model.addAttribute("user", new User());
 	    model.addAttribute("credentials", new Credentials());
-	    return "formRegister";
+	    return "formRegisterUser";
 	}
 	
 
 	@PostMapping("/register")
-	public String registerCuoco(@Valid 
-	                            @ModelAttribute("credentials") Credentials credentials,
+	public String registerCuoco(@Valid @ModelAttribute("user") User user,
+	                            BindingResult cuocoBindingResult, 
+	                            @Valid @ModelAttribute("credentials") Credentials credentials,
 	                            BindingResult credenzialiBindingResult,
 	                            @RequestParam("fileImage") MultipartFile file,
 	                            HttpSession session,
 	                            Model model) {
-	    this.credentialsValidator.validate(credentials, credenzialiBindingResult);
 	    // se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
 	    if (!cuocoBindingResult.hasErrors() && !credenzialiBindingResult.hasErrors()) {
 	        try {
@@ -98,9 +95,9 @@ public class AuthenticationController {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	            model.addAttribute("fileUploadError", "Errore nel caricamento dell'immagine");
-	            return "formRegisterCuoco";
+	            return "formRegister";
 	        }
-	        model.addAttribute("cuoco", user);
+	        model.addAttribute("user", user);
 	        
 	        // Reindirizza alla pagina precedente
 	        String prevPage = (String) session.getAttribute("prevPage");
@@ -110,6 +107,9 @@ public class AuthenticationController {
 	        }
 	        return "login";
 	    }
-	    return "formRegister";
+	    return "formRegisterUser";
 	}
+	
+	
+
 }
