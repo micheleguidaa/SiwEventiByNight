@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head th:replace="~{fragments/header :: header(title='SiwEventi - Locale')}">
+    <link rel="stylesheet" href="path/to/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/your/custom/styles.css">
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-5 mb-5">
+        <div class="container-info shadow-sm">
+            <div class="row g-0">
+                <div class="col-md-4 text-center">
+                    <img th:src="${local.urlsImages[0]}" class="img-fluid img rounded" alt="Immagine Locale">
+                </div>
+                <div class="col-md-7 ms-3">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${local.name}">Nome del locale</h5>
+                        <p class="text-muted lead" th:text="'Indirizzo: ' + ${local.address}">Indirizzo: Via Roma 123</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="mt-5 mb-4 text-center">Eventi:</h2>
+        <div th:if="${local.events == null || local.events.isEmpty()}" class="alert alert-warning">
+            Non ci sono eventi per questo locale.
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${local.events != null && !local.events.isEmpty()}">
+            <div class="col" th:each="event : ${local.events}">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" th:text="${event.name}">Nome dell'evento</h5>
+                        <p class="card-text" th:text="'Tema: ' + ${event.theme}">Tema: Musica e Danza</p>
+                        <p class="card-text" th:text="'Data inizio: ' + ${event.startDateTime}">Data inizio: 2023-06-20 21:00</p>
+                        <p class="card-text" th:text="'Data fine: ' + ${event.endDateTime}">Data fine: 2023-06-21 02:00</p>
+                        <p class="card-text" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
+                        <a th:href="@{'/event/' + ${event.id}}" class="btn btn-primary mt-auto">Visualizza Evento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script src="path/to/bootstrap.bundle.min.js"></script>
+</body>
+</html>

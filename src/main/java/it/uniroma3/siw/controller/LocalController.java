@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.service.LocalService;
 
@@ -18,4 +19,10 @@ public class LocalController {
         model.addAttribute("locals", localService.findAll());
         return "locals"; 
     }
+    
+	@GetMapping("/local/{id}")
+	public String getLocal(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("local", localService.findById(id));
+		return "local";
+	}
 }

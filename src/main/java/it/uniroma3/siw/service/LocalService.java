@@ -15,4 +15,8 @@ public class LocalService {
 		public Iterable<Local> findAll() {
 			return localRepository.findAll();
 		}
+		
+		public Local findById(Long id) {
+			return localRepository.findById(id).orElse(null);
+		}
 }
