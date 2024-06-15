@@ -71,7 +71,7 @@
 						<a class="nav-link" role="button" id="userDropdown" data-bs-toggle="dropdown"
 							aria-expanded="false">
 							<!-- Se l'immagine è presente -->
-							<img th:if="${cuocoCorrente.urlImage}" th:src="@{${cuocoCorrente.urlImage}}"
+							<img th:if="${CurrentUser.urlImage}" th:src="@{${CurrentUser.urlImage}}"
 								alt="Account Image" class="account-icon my-2">
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
