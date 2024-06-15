@@ -136,32 +136,26 @@ footer {
 }
 
 /* Image Styles */
-.recipe-img,
-.recipe-img-lg,
-.cuoco-img,
+.img,
+.img-lg
 .account-icon {
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
 
-.recipe-img,
-.recipe-img-lg {
+.img,
+.img-lg {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-.recipe-img {
+.img {
     height: 260px;
 }
 
-.recipe-img-lg {
+.img-lg {
     height: 320px;
-}
-
-.cuoco-img {
-    height: 350px;
-    border-radius: 10px;
 }
 
 /* Account Icon Styles */
