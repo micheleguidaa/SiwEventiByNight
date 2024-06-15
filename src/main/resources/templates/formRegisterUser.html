@@ -9,7 +9,7 @@
 		<div th:replace="~{fragments/navbar :: navbar}"></div>
 	</div>
 	<div class="container form-container mt-5">
-		<h2 class="text-center mb-4">Aggiungi Nuovo Cuoco</h2>
+		<h2 class="text-center mb-4">Registrazione</h2>
 		<form th:action="@{/registerUser}" method="post" enctype="multipart/form-data" th:object="${credentials}">
 			
 			<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger text-center" role="alert">
@@ -23,7 +23,7 @@
 				<div class="col-md-4">
 					<div class="card mb-4">
 						<div class="card-header">
-							<h5 class="card-title mb-0">Immagine Cuoco</h5>
+							<h5 class="card-title mb-0">Immagine Utente</h5>
 						</div>
 						<div class="card-body p-0">
 							<div class="image-container">
