@@ -14,7 +14,7 @@ public class EventController {
 	
 	// Mostra la pagina con l'elenco di tutti gli eventi
 	@GetMapping("/events")
-	public String showEvent(Model model) {
+	public String showEvents(Model model) {
 		model.addAttribute("events", eventService.findAll());
 		return "events";
 	}
