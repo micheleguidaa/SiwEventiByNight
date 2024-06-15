@@ -20,7 +20,8 @@ public class User {
 	private String name;
 	private String surname;
 	private LocalDate dateOfBirth;
-	private Long age;
+	private String urlImage;
+    
 	
 	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)  
 	private List<Reservation> reservations;
@@ -49,12 +50,13 @@ public class User {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public Long getAge() {
-		return age;
+	public String getUrlImage() {
+		return urlImage;
 	}
-	public void setAge(Long age) {
-		this.age = age;
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
 	}
+
 	
 	
 }
