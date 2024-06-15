@@ -22,7 +22,7 @@ public class EventController {
 	
 	@GetMapping("/event/{id}")
 	public String getEvent(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("event", eventService.findById(id));
+		model.addAttribute("event", eventService.getEvent(id));
 		return "event";
 	}
 }

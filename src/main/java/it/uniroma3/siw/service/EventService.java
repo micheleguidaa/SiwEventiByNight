@@ -20,7 +20,8 @@ public class EventService {
 		return (List<Event>) eventRepository.findAll();
 	}
 
-	public Event findById(Long id) {
-		return eventRepository.findById(id).orElse(null);
+
+	public Event getEvent(Long eventId) {
+		return eventRepository.findById(eventId).orElse(null);
 	}
 }

@@ -15,9 +15,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	private LocalDateTime reservationDateTime;
-	
-	@ManyToOne 
-	private User users;
+	private User user;
 	@OneToOne
 	private Event event;
 
@@ -45,11 +43,11 @@ public class Reservation {
 		this.reservationDateTime = reservationDateTime;
 	}
 
-	public User getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsers(User users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	} 
 }

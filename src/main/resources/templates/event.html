@@ -16,16 +16,17 @@
 					<div class="card-body">
 						<h5 class="card-title mb-4" th:text="${event.name}">Nome dell'evento</h5>
 						<p class="text-muted lead" th:text="'Tema: ' + ${event.theme}">Tema: Musica e Danza</p>
-						<p class="text-muted lead"
-							th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero massimo di
-							partecipanti: 200</p>
-						<p class="text-muted lead" th:text="'Data inizio: ' + ${event.startDateTime}">Data inizio:
-							2023-06-20 21:00</p>
-						<p class="text-muted lead" th:text="'Data fine: ' + ${event.endDateTime}">Data fine: 2023-06-21
-							02:00</p>
+						<p class="text-muted lead" th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero massimo di partecipanti: 200</p>
+						<p class="text-muted lead" th:text="'Data inizio: ' + ${event.startDateTime}">Data inizio: 2023-06-20 21:00</p>
+						<p class="text-muted lead" th:text="'Data fine: ' + ${event.endDateTime}">Data fine: 2023-06-21 02:00</p>
 						<p class="text-muted lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
-						<!-- Bottone Prenota -->
-						<a th:href="@{'/reservation/' + ${event.id}}" class="btn btn-primary mt-3">Prenota</a>
+						
+						<!-- Form Prenotazione -->
+						<form th:action="@{/addReservation}" method="post">
+							<input type="hidden" th:name="eventId" th:value="${event.id}" />
+						<input type="hidden" id="userId" name="userId" th:value="${CurrentUser.id}" />
+							<button type="submit" class="btn btn-primary mt-3">Prenota</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -40,8 +41,7 @@
 					<div class="card-body d-flex flex-column">
 						<h5 class="card-title">Prenotazione</h5>
 						<p class="card-text">Dettagli della prenotazione</p>
-						<a th:href="@{'/reservation/' + ${event.reservation.id}}"
-							class="btn btn-primary mt-auto">Visualizza Prenotazione</a>
+						<a th:href="@{'/reservation/' + ${event.reservation.id}}" class="btn btn-primary mt-auto">Visualizza Prenotazione</a>
 					</div>
 				</div>
 			</div>
