@@ -8,7 +8,7 @@
 	<div th:if="${ruolo == 'ADMIN'}">
 		<div th:replace="~{fragments/navbar :: navbar}"></div>
 	</div>
-	<div class="container form-container mt-5">
+	<div class="container form-container mt-5 mb-5">
 		<h2 class="text-center mb-4">Registrazione</h2>
 		<form th:action="@{/register}" method="post" enctype="multipart/form-data" th:object="${credentials}">
 			
@@ -92,14 +92,10 @@
 					</div>
 				</div>
 
-				<button type="submit" class="btn btn-success w-100">Salva Cuoco</button>
+				<button type="submit" class="btn btn-primary w-100">Salva Cuoco</button>
 			</div>
 		</form>
 	</div>
-
-	<!-- Include il footer -->
-	<div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}">  </div>
-
 
 	<!-- Script per la preview dell'immagine -->
 	<script>
