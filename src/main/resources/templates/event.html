@@ -24,6 +24,8 @@
 						<p class="text-muted lead" th:text="'Data fine: ' + ${event.endDateTime}">Data fine: 2023-06-21
 							02:00</p>
 						<p class="text-muted lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
+						<!-- Bottone Prenota -->
+						<a th:href="@{'/reservation/' + ${event.id}}" class="btn btn-primary mt-3">Prenota</a>
 					</div>
 				</div>
 			</div>

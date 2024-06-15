@@ -35,10 +35,10 @@
 
 					<!-- Inizio Elementi visibili per admin -->
 					<li class="nav-item">
-						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ricette">Locali</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/locals">Locali</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/cuochi">Eventi</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/events">Eventi</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ingredienti">Utenti</a>
@@ -50,14 +50,14 @@
 				</ul>
 
 				<!-- Inizio Barra di Ricerca per Cuochi e Utenti Non Registrati -->
-				<form class="d-flex" th:if="${ruolo != 'ADMIN'}" th:action="@{/search}" method="post">
+				<form class="d-flex" th:if="${role != 'ADMIN'}" th:action="@{/search}" method="post">
 					<input class="form-control me-2" type="search" name="stringa" placeholder="Search"
 						aria-label="Search">
 				</form>
 				<!-- Fine Barra di Ricerca per Cuochi e Utenti Non Registrati -->
 
 				<!-- Inizio Barra di Ricerca per Admin -->
-				<form class="d-flex" th:if="${ruolo == 'ADMIN'}" th:action="@{/admin/search}" method="post">
+				<form class="d-flex" th:if="${role == 'ADMIN'}" th:action="@{/admin/search}" method="post">
 					<input class="form-control me-2" type="search" name="stringa" placeholder="Search"
 						aria-label="Search">
 				</form>
