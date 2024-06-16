@@ -26,15 +26,17 @@
 						<p class="lead" th:text="'Il nostro evento a tema: ' + ${event.theme}">Tema: Musica e Danza</p>
 						<p class="lead" th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero
 							massimo di partecipanti: 200</p>
-						<p class="lead" th:text="'Data e orario di inizio: ' + ${event.startDateTime}">Data inizio:
-							2023-06-20 21:00</p>
-						<p class="lead" th:text="'Data e orario di fine: ' + ${event.endDateTime}">Data fine: 2023-06-21
-							02:00</p>
+						<p class="lead"
+							th:text="'Data e orario di inizio: ' + ${#temporals.format(event.startDateTime, 'dd/MM/yyyy HH:mm')}">
+							Data inizio: 2023-06-20 21:00</p>
+						<p class="lead"
+							th:text="'Data e orario di fine: ' + ${#temporals.format(event.endDateTime, 'dd/MM/yyyy HH:mm')}">
+							Data fine: 2023-06-21 02:00</p>
 						<p class="lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
 					</div>
 
 					<!-- Sezione del bottone di prenotazione -->
-					<div class="w-100 px-3"> <!-- Aggiunta della classe px-3 per il margine laterale -->
+					<div class="w-100 px-3">
 						<div th:if="${CurrentUser != null}">
 							<!-- Form Prenotazione -->
 							<form th:action="@{/addReservation}" method="post" class="w-100">
@@ -44,12 +46,9 @@
 							</form>
 						</div>
 						<div th:if="${CurrentUser == null}">
-							<div class="alert alert-warning py-3" role="alert">
-								<div>
-									<p class="mb-1"><a href="/login" class="alert-link">Accedi</a> o <a href="/register"
-											class="alert-link">Registrati</a> per Prenotarti all'Evento!
-									</p>
-								</div>
+							<div class="alert alert-info text-center" role="alert">
+								<p class="m-0"><a href="/login" class="alert-link">Accedi</a> o <a href="/register"
+										class="alert-link">Registrati</a> per Prenotarti all'Evento!</p>
 							</div>
 						</div>
 					</div>
