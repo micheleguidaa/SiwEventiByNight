@@ -10,17 +10,14 @@
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-	<div class="container mt-5 mb-3">
-		<h1 class="mb-3 text-center">Lista delle Prenotazioni</h1>
-		<div class="text-center mb-4">
-			<a class="btn btn-primary btn-lg" href="/registerReservation" role="button">Aggiungi Nuova Prenotazione</a>
-		</div>
+	<div class="container my-5">
+		<h1 class="my-5 text-center">Lista delle Prenotazioni</h1>
 		<div th:if="${reservations == null || reservations.isEmpty()}" class="alert alert-warning">
 			Non ci sono prenotazioni nel sistema
 		</div>
 		<div class="table-responsive">
 			<div class="table-responsive">
-				<table class="table table-hover table-sm mx-auto">
+				<table class="table table-striped table-dark table-sm mx-auto">
 					<tbody>
 						<tr th:each="reservation : ${reservations}">
 							<td class="align-middle">
@@ -30,9 +27,9 @@
 								</div>
 							</td>
 							<td class="align-middle">
-								<div class="d-flex flex-column align-items-start">
-									<h6 class="mb-1 text-small" th:text="${reservation.event.name}">Nome Evento</h6>
-									<p class="mb-1 text-small"
+								<div class="d-flex flex-column align-items-start ">
+									<h6 class="mb-1 text-center" th:text="${reservation.event.name}">Nome Evento</h6>
+									<p class="mb-1"
 										th:text="'Data e Ora Prenotazione: ' + ${reservation.reservationDateTime}">Data
 										e Ora Prenotazione</p>
 									<p class="mb-1 text-small"
@@ -43,8 +40,8 @@
 							<td class="align-middle">
 								<div class="d-flex align-items-center justify-content-center">
 									<form th:action="@{'/admin/delete/event/' + ${reservation.id}}" method="post">
-										<button type="submit" class="btn btn-danger btn-sm">
-											<img src="/images/trash.svg" alt="Remove">
+										<button type="submit" class="btn btn-danger btn-lg">
+											<img src="/images/trash.svg" class="remove-icon" alt="Remove">
 										</button>
 									</form>
 								</div>

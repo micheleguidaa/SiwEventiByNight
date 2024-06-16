@@ -164,8 +164,15 @@ footer {
 
 
 .img-sm {
+	width: 100%;
+    object-fit: cover;
+    object-position: center;
 	max-width: 180px; 
-	max-height: 180px;
+	max-height: 110px;
+}
+
+.remove-icon {
+    filter: invert(1);
 }
 
 /* User Image Styles */
