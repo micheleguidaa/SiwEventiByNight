@@ -99,4 +99,12 @@ public class Event {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
+
+	public Local getLocal() {
+		return local;
+	}
+
+	public void setLocal(Local local) {
+		this.local = local;
+	}
 }

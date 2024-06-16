@@ -7,43 +7,46 @@
 <body>
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 	<div class="container mt-5 mb-5 w-75">
+		<h2 class="card-title mb-4 text-center" th:text="${event.name}">Nome dell'evento</h2>
 		<div class="container-info shadow-sm">
 			<div class="row g-0">
+				
+				<!-- Colonna per l'immagine dell'evento -->
 				<div class="col-md-5 text-center">
 					<img th:src="${event.urlImage}" class="img-lg rounded" alt="Immagine Evento">
 				</div>
-				<div class="col-md-6 ms-3">
-					<div class="card-body">
-						<h5 class="card-title mb-4" th:text="${event.name}">Nome dell'evento</h5>
-						<p class="text-muted lead" th:text="'Tema: ' + ${event.theme}">Tema: Musica e Danza</p>
-						<p class="text-muted lead" th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero massimo di partecipanti: 200</p>
-						<p class="text-muted lead" th:text="'Data inizio: ' + ${event.startDateTime}">Data inizio: 2023-06-20 21:00</p>
-						<p class="text-muted lead" th:text="'Data fine: ' + ${event.endDateTime}">Data fine: 2023-06-21 02:00</p>
-						<p class="text-muted lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
 
-						<!-- Conditionally display form or alert -->
-						<div th:if="${CurrentUser != null}">
-							<!-- Form Prenotazione -->
-							<form th:action="@{/addReservation}" method="post">
-								<input type="hidden" th:name="eventId" th:value="${event.id}" />
-								<input type="hidden" id="userId" name="userId" th:value="${CurrentUser.id}" />
-								<button type="submit" class="btn btn-primary mt-3">Prenota</button>
-							</form>
-						</div>
-						<div th:if="${CurrentUser == null}">
-							<div class="alert alert-warning mt-3 d-flex align-items-center" role="alert">
-								<div>
-									<h4 class="alert-heading mb-1">Ehi, ciao!</h4>
-									<p class="mb-1">Vuoi prenotare questo evento? Prima devi accedere o registrarti.</p>
-									<hr>
-									<p class="mb-0">
-										<a href="/login" class="alert-link">Accedi</a> oppure 
-										<a href="/register" class="alert-link">Registrati</a> per procedere con la prenotazione.
-									</p>
-								</div>
-							</div>
-						</div>
+				<!-- Colonna per le informazioni dell'evento -->
+				<div class="col-md-5 mt-5 mb-4">
+					<div class="card-body text-center">
+						<!-- Paragrafo con il link al locale -->
+						<p class="text-muted lead">
+							<a th:href="@{'/local' + '/' + ${event.local.id}}" th:text="'Nome del locale: ' + ${event.local.name}">Nome del locale</a>
+						</p>
+						<p class="text-muted lead" th:text="'Il nostro evento a tema: ' + ${event.theme}">Tema: Musica e Danza</p>
+						<p class="text-muted lead" th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero massimo di partecipanti: 200</p>
+						<p class="text-muted lead" th:text="'Data e orario di inizio: ' + ${event.startDateTime}">Data inizio: 2023-06-20 21:00</p>
+						<p class="text-muted lead" th:text="'Data e orario di fine: ' + ${event.endDateTime}">Data fine: 2023-06-21 02:00</p>
+						<p class="text-muted lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Conditionally display form or alert -->
+		<div th:if="${CurrentUser != null}">
+			<!-- Form Prenotazione -->
+			<form th:action="@{/addReservation}" method="post">
+				<input type="hidden" th:name="eventId" th:value="${event.id}" />
+				<input type="hidden" id="userId" name="userId" th:value="${CurrentUser.id}" />
+				<button type="submit" class="btn btn-primary mt-3">Prenota</button>
+			</form>
+		</div>
+		<div th:if="${CurrentUser == null}">
+			<div class="alert alert-warning mt-3 d-flex align-items-center" role="alert">
+				<div>
+					<h4 class="alert-heading mb-1">Ehi, ciao!</h4>
+					<p class="mb-1">Vuoi prenotare questo evento? Prima devi <a href="/login" class="alert-link">accedere</a> o <a href="/register" class="alert-link">registrarti.</a></p>
 				</div>
 			</div>
 		</div>
