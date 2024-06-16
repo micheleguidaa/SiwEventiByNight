@@ -8,8 +8,8 @@
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-	<div class="container mt-5 mb-3">
-		<h1 class="mb-3 text-center">Locali</h1>
+	<div class="container mt-5 mb-5">
+		<h1 class=" text-center">Locali</h1>
 		<div th:if="${locals==null || locals.isEmpty()}" class="alert alert-warning">
 			Non ci sono locali nel sistema
 		</div>
