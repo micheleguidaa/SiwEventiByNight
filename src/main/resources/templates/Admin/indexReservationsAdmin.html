@@ -12,7 +12,7 @@
 
 	<div class="container my-5">
 		<h1 class="my-5 text-center">Lista delle Prenotazioni</h1>
-		<div th:if="${reservations == null || reservations.isEmpty()}" class="alert alert-warning">
+		<div th:if="${reservations == null || reservations.isEmpty()}" class="alert alert-info text-center">
 			Non ci sono prenotazioni nel sistema
 		</div>
 		<div class="table-responsive">
