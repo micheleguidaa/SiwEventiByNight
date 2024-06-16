@@ -8,8 +8,8 @@
 	<div th:if="${ruolo == 'ADMIN'}">
 		<div th:replace="~{fragments/navbar :: navbar}"></div>
 	</div>
-	<div class="container form-container mt-5">
-		<h2 class="text-center mb-4">Crea Nuovo Evento</h2>
+	<h2 class="text-center">Crea Nuovo Evento</h2>
+	<div class="container form-container mt-5 mb-5">
 		<form th:action="@{/admin/add/event}" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<!-- Colonna Immagine -->
@@ -20,14 +20,15 @@
 						</div>
 						<div class="card-body p-0">
 							<div class="image-container">
-								<img src="/images/default/senzaFoto.jpeg" class="rounded img" alt="Immagine Evento" id="eventImagePreview" />
+								<img src="/images/default/senzaFoto.jpeg" class="rounded img" alt="Immagine Evento"
+									id="eventImagePreview" />
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Colonna Inserimento Dati -->
-				<div class="col-md-8">
+				<!-- Colonna Inserimento Dati Parte 1 -->
+				<div class="col-md-4">
 					<div class="mb-3">
 						<label for="name" class="form-label">Nome</label>
 						<input type="text" class="form-control" id="name" name="name" required>
@@ -38,19 +39,25 @@
 					</div>
 					<div class="mb-3">
 						<label for="startDateTime" class="form-label">Data e Ora Inizio</label>
-						<input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime" required>
+						<input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime"
+							required>
 					</div>
 					<div class="mb-3">
 						<label for="endDateTime" class="form-label">Data e Ora Fine</label>
 						<input type="datetime-local" class="form-control" id="endDateTime" name="endDateTime" required>
 					</div>
+				</div>
+
+				<!-- Colonna Inserimento Dati Parte 2 -->
+				<div class="col-md-4">
 					<div class="mb-3">
 						<label for="cost" class="form-label">Costo</label>
 						<input type="number" class="form-control" id="cost" name="cost" required>
 					</div>
 					<div class="mb-3">
 						<label for="nMaxParticipants" class="form-label">Numero Massimo di Partecipanti</label>
-						<input type="number" class="form-control" id="nMaxParticipants" name="nMaxParticipants" required>
+						<input type="number" class="form-control" id="nMaxParticipants" name="nMaxParticipants"
+							required>
 					</div>
 					<div class="mb-3">
 						<label for="local" class="form-label">Locale</label>
@@ -60,12 +67,18 @@
 					</div>
 					<div class="mb-3">
 						<label for="fileImage" class="form-label">Carica immagine dell'evento (opzionale)</label>
-						<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*" onchange="loadFile(event)">
+						<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
+							onchange="loadFile(event)">
 						<div class="form-text text-light">Puoi caricare un'immagine per l'evento.</div>
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-success w-100">Salva Evento</button>
+			<!-- Bottoni -->
+			<div class="row">
+				<div class="col-md-8 offset-md-4">
+					<button type="submit" class="btn btn-primary w-100">Salva Evento</button>
+				</div>
+			</div>
 		</form>
 	</div>
 
