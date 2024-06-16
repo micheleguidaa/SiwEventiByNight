@@ -1,6 +1,7 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -23,8 +25,8 @@ public class Event {
 	private Long nMaxParticipants;
 	private String urlImage;
 	
-	@OneToOne(mappedBy="event",cascade = CascadeType.ALL)
-	private Reservation reservation;
+	@OneToMany(mappedBy="event",cascade = CascadeType.ALL)
+	private List<Reservation> reservation;
 	@ManyToOne 
 	private Local local;
 
@@ -84,11 +86,11 @@ public class Event {
 		this.nMaxParticipants = nMaxParticipants;
 	}
 
-	public Reservation getReservation() {
+	public List<Reservation> getReservation() {
 		return reservation;
 	}
 
-	public void setReservation(Reservation reservation) {
+	public void setReservation(List<Reservation> reservation) {
 		this.reservation = reservation;
 	}
 
