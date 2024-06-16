@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import it.uniroma3.siw.service.EventService;
 
 @Controller
@@ -25,4 +24,13 @@ public class EventController {
 		model.addAttribute("event", eventService.getEvent(id));
 		return "event";
 	}
+
+	// Mostra la pagina con l'elenco di tutti gli eventi per l'amministratore
+	@GetMapping("/admin/events")
+	public String showAdminEvents(Model model) {
+		model.addAttribute("events", eventService.findAll());
+		return "Admin/indexEventsAdmin";
+	}
+
+
 }

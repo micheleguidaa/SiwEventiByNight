@@ -158,6 +158,15 @@ footer {
     height: 320px;
 }
 
+/* User Image Styles */
+.user-img {
+    width: 100%; /* Ensures the image fits within the card's width */
+    height: 350px; /* Set a fixed height */
+    object-fit: cover; /* Ensure the image covers the set dimensions without distortion */
+    object-position: center; /* Centers the image vertically */
+    border-radius: 10px; /* Optional: Keep the same border radius */
+}
+
 /* Account Icon Styles */
 .account-icon {
     width: 50px;

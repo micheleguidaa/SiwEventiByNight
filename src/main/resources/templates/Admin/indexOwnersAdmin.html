@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head th:replace="~{fragments/header :: header(title='SiwEventi - Gestione Proprietari')}">
+    <link rel="stylesheet" href="path/to/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/your/custom/styles.css">
+</head>
+<body>
+	<!-- Include la navbar -->
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<div class="container mt-5 mb-3">
+		<h1 class="mb-3 text-center">Lista dei Proprietari</h1>
+		<div class="text-center mb-4">
+			<a class="btn btn-primary btn-lg" href="/registerOwner" role="button">Aggiungi Nuovo Proprietario</a>
+		</div>
+		<div th:if="${owners == null || owners.isEmpty()}" class="alert alert-warning">
+			Non ci sono proprietari nel sistema
+		</div>
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+			<div class="col" th:each="owner : ${owners}">
+				<div class="card">
+					<div class="card-body d-flex flex-column text-center">
+						<h5 class="card-title" th:text="${owner.name} + ' ' + ${owner.surname}">Nome Proprietario</h5>
+						<div class="mt-3">
+							<div class="d-flex">
+								<a th:href="@{'/admin/update/owner/' + ${owner.id}}" class="btn btn-primary flex-grow-1 me-1">Modifica</a>
+								<form th:action="@{'/admin/delete/owner/' + ${owner.id}}" method="post" class="flex-grow-1">
+									<button type="submit" class="btn btn-danger w-100">Elimina</button>
+								</form>
+							</div>
+						</div>
+						<a th:href="@{'/owner/' + ${owner.id}}" class="btn btn-primary mt-3">Visualizza Proprietario</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Include il footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+	<script src="path/to/bootstrap.bundle.min.js"></script>
+</body>
+</html>

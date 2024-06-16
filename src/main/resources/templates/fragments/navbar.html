@@ -41,10 +41,13 @@
 						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/events">Eventi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ingredienti">Utenti</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/users">Utenti</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/ingredienti">Proprietari</a>
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/reservations">Prenotazioni</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/owners">Proprietari</a>
 					</li>
 					<!-- Fine Elementi visibili per admin -->
 				</ul>
@@ -71,8 +74,8 @@
 						<a class="nav-link" role="button" id="userDropdown" data-bs-toggle="dropdown"
 							aria-expanded="false">
 							<!-- Se l'immagine è presente -->
-							<img th:if="${CurrentUser.urlImage}" th:src="@{${CurrentUser.urlImage}}"
-								alt="Account Image" class="account-icon my-2">
+							<img th:if="${CurrentUser.urlImage}" th:src="@{${CurrentUser.urlImage}}" alt="Account Image"
+								class="account-icon my-2">
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
 							<div th:text="${userDetails.username}" class="p-2 ms-2 text-capitalize">Profile</div>

@@ -39,5 +39,12 @@ public class ReservationController {
 		reservationService.deleteById(id);
 		return "redirect:/reservations";
 	}
+	
+	// Mostra la pagina con l'elenco di tutti gli users per l'amministratore
+	@GetMapping("/admin/reservations")
+	public String showAdminUsers(Model model) {
+		model.addAttribute("reservations", reservationService.findAll());
+		return "Admin/indexReservationsAdmin";
+	}
 
 }

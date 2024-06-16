@@ -25,4 +25,11 @@ public class LocalController {
 		model.addAttribute("local", localService.findById(id));
 		return "local";
 	}
+	
+	// Mostra la pagina con l'elenco di tutti gli users per l'amministratore
+	@GetMapping("/admin/locals")
+	public String showAdminLocals(Model model) {
+		model.addAttribute("locals", localService.findAll());
+		return "Admin/indexLocalsAdmin";
+	}
 }
