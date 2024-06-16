@@ -10,9 +10,6 @@
 
 	<div class="container mt-5 mb-3">
 		<h1 class="mb-3 text-center">Lista dei Locali</h1>
-		<div class="text-center mb-4">
-			<a class="btn btn-primary btn-lg" href="/registerLocale" role="button">Aggiungi Nuovo Locale</a>
-		</div>
 		<div th:if="${locals == null || locals.isEmpty()}" class="alert alert-warning">
 			Non ci sono locali nel sistema
 		</div>

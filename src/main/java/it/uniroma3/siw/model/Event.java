@@ -23,7 +23,7 @@ public class Event {
 	private Long nMaxParticipants;
 	private String urlImage;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy="event",cascade = CascadeType.ALL)
 	private Reservation reservation;
 	@ManyToOne 
 	private Local local;

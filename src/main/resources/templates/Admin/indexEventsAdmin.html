@@ -7,10 +7,7 @@
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
 	<div class="container mt-5 mb-3">
-		<h2 class="text-center mb-4">Lista degli Eventi</h2>
-		<div class="text-center mb-4">
-			<a class="btn btn-primary btn-lg" href="/registerEvento" role="button">Aggiungi Nuovo Evento</a>
-		</div>
+		<h1 class="text-center mb-4">Lista degli Eventi</h1>
 		<div th:if="${events == null || events.isEmpty()}" class="alert alert-warning">
 			Non ci sono eventi nel sistema
 		</div>
