@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html lang="it">
-<<<<<<< HEAD
-<head th:replace="~{fragments/header :: header(title='SiwEventi - Gestione Locali')}">
-    <link rel="stylesheet" href="path/to/bootstrap.min.css">
-    <link rel="stylesheet" href="path/to/your/custom/styles.css">
-</head>
-=======
-
 <head th:replace="~{fragments/header :: header(title='SiwEventi - Gestione Locali')}"></head>
 
->>>>>>> branch 'main' of https://github.com/micheleguidaa/SiwEventiByNight.git
 <body>
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
 	<div class="container mt-5 mb-3">
-<<<<<<< HEAD
 		<h1 class="mb-3 text-center">Lista dei Locali</h1>
 		<div class="text-center mb-4">
 			<a class="btn btn-primary btn-lg" href="/registerLocale" role="button">Aggiungi Nuovo Locale</a>
 		</div>
-=======
-		<h1 class="text-center mb-3">Lista dei Locali</h1>
->>>>>>> branch 'main' of https://github.com/micheleguidaa/SiwEventiByNight.git
+
 		<div th:if="${locals == null || locals.isEmpty()}" class="alert alert-warning">
 			Non ci sono locali nel sistema
 		</div>
-<<<<<<< HEAD
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 			<div class="col" th:each="local : ${locals}">
 				<div class="card">
@@ -40,29 +28,6 @@
 								<a th:href="@{'/admin/update/local/' + ${local.id}}" class="btn btn-primary flex-grow-1 me-1">Modifica</a>
 								<form th:action="@{'/admin/delete/local/' + ${local.id}}" method="post" class="flex-grow-1">
 									<button type="submit" class="btn btn-danger w-100">Elimina</button>
-=======
-		<div class="table-responsive">
-			<table class="table table-hover table-sm mx-auto" style="max-width: 80%;">
-				<tbody>
-					<tr th:each="local : ${locals}">
-						<td class="text-center">
-							<div class="d-flex align-items-center justify-content-center img-container">
-								<img th:src="${local.urlsImages[0]}" alt="Immagine Locale" class="img-fluid object-fit-cover img-size">
-							</div>
-						</td>
-						<td class="w-50">
-							<div class="d-flex align-items-center img-size">
-								<h6 class="mb-0 text-small" th:text="${local.name}">Nome Locale</h6>
-							</div>
-						</td>
-						<td class="w-20">
-							<div class="d-flex align-items-center justify-content-center img-size">
-								<form th:action="@{'/admin/delete/local/' + ${local.id}}" method="post">
-									<button type="submit" class="btn btn-danger btn-sm">
-										<img src="/images/trash.svg" alt="Remove">
-									</button>
->>>>>>> branch 'main' of https://github.com/micheleguidaa/SiwEventiByNight.git
-								</form>
 							</div>
 						</div>
 					</div>
