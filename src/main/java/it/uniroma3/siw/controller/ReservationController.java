@@ -33,8 +33,7 @@ public class ReservationController {
 		return "redirect:/reservations";
 	}
 	
-
-	@PostMapping("/reservations/deleteReservation/{id}")
+	@PostMapping("/delete/reservation/{id}")
 	public String deleteReservation(@PathVariable("id") Long id) {
 		reservationService.deleteById(id);
 		return "redirect:/reservations";
@@ -46,5 +45,6 @@ public class ReservationController {
 		model.addAttribute("reservations", reservationService.findAll());
 		return "Admin/indexReservationsAdmin";
 	}
+	
 
 }
