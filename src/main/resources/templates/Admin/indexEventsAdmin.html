@@ -3,9 +3,10 @@
 <head th:replace="~{fragments/header :: header(title='SiwFood - Gestione Eventi')}"></head>
 
 <body>
-	<!-- Include la navbar -->
-	<div th:replace="~{fragments/navbar :: navbar}"></div>
+    <!-- Include la navbar -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
+<<<<<<< HEAD
 	<div class="container mt-5 mb-3">
 		<h2 class="text-center mb-4">Lista degli Eventi</h2>
 		<div class="text-center mb-4">
@@ -35,9 +36,48 @@
 			</div>
 		</div>
 	</div>
+=======
+    <div class="container mt-5 mb-3">
+        <h1 class="text-center mb-4">Lista degli Eventi</h1>
+        <div th:if="${events == null || events.isEmpty()}" class="alert alert-warning">
+            Non ci sono eventi nel sistema
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-sm mx-auto" style="max-width: 80%;">
+                <tbody>
+                    <tr th:each="event : ${events}">
+                        <td class="text-center">
+                            <div class="d-flex align-items-center justify-content-center img-container">
+                                <img th:src="${event.urlImage}" alt="Immagine Evento" class="img-fluid object-fit-cover img-size">
+                            </div>
+                        </td>
+                        <td class="w-50">
+                            <div class="d-flex flex-column align-items-start">
+                                <h6 class="mb-0 text-small" th:text="${event.name}">Nome Evento</h6>
+                                <p class="mb-0 text-small" th:text="'Tema: ' + ${event.theme}">Tema: Musica e Danza</p>
+                                <p class="mb-0 text-small" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
+                            </div>
+                        </td>
+                        <td class="w-20">
+                            <div class="d-flex align-items-center justify-content-center img-size">
+                                <form th:action="@{'/admin/delete/event/' + ${event.id}}" method="post">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <img src="/images/trash.svg" alt="Remove">
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+>>>>>>> branch 'main' of https://github.com/micheleguidaa/SiwEventiByNight.git
 
-	<!-- Include il footer -->
-	<div th:replace="~{fragments/footer :: footer}"></div>
+    <!-- Include il footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="path/to/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

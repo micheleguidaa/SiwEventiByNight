@@ -32,6 +32,10 @@ a {
     text-decoration: underline;
 }
 
+.filter-white {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%);
+}
+
 /* Button Styles */
 .btn-primary {
     background-color: var(--primary-color);
@@ -158,9 +162,23 @@ footer {
     height: 320px;
 }
 
+<<<<<<< HEAD
 .img-sm {
 	max-width: 180px; 
 	max-height: 180px;
+=======
+.img-container {
+	height: 100px;
+	width: 100px;
+}
+
+.img-size {
+	height: 100px;
+}
+
+.text-small {
+	font-size: 0.8rem;
+>>>>>>> branch 'main' of https://github.com/micheleguidaa/SiwEventiByNight.git
 }
 
 /* User Image Styles */
