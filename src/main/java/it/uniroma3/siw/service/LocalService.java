@@ -19,4 +19,8 @@ public class LocalService {
 		public Local findById(Long id) {
 			return localRepository.findById(id).orElse(null);
 		}
+
+		public void deleteById(Long id) {
+			localRepository.deleteById(id);
+		}
 }

@@ -24,4 +24,9 @@ public class EventService {
 	public Event getEvent(Long eventId) {
 		return eventRepository.findById(eventId).orElse(null);
 	}
+
+
+	public void deleteById(Long id) {
+		eventRepository.deleteById(id);
+	}
 }

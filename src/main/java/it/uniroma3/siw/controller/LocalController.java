@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.service.LocalService;
 
@@ -32,4 +33,11 @@ public class LocalController {
 		model.addAttribute("locals", localService.findAll());
 		return "Admin/indexLocalsAdmin";
 	}
+	
+	@PostMapping("/admin/delete/local/{id}")
+	public String deleteLocal(@PathVariable("id") Long id) {
+		localService.deleteById(id);
+		return "redirect:/admin/locals";
+	}
+
 }
