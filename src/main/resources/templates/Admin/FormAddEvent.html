@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head th:replace="~{fragments/header :: header(title='SiwFood - Creazione Evento')}"></head>
+
+<body>
+	<!-- Include la navbar -->
+	<div th:if="${ruolo == 'ADMIN'}">
+		<div th:replace="~{fragments/navbar :: navbar}"></div>
+	</div>
+	<div class="container form-container mt-5">
+		<h2 class="text-center mb-4">Crea Nuovo Evento</h2>
+		<form th:action="@{/admin/add/event}" method="post" enctype="multipart/form-data">
+			<div class="row">
+				<!-- Colonna Immagine -->
+				<div class="col-md-4">
+					<div class="card mb-4">
+						<div class="card-header">
+							<h5 class="card-title mb-0">Immagine dell'Evento</h5>
+						</div>
+						<div class="card-body p-0">
+							<div class="image-container">
+								<img src="/images/default/senzaFoto.jpeg" class="rounded img" alt="Immagine Evento" id="eventImagePreview" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Colonna Inserimento Dati -->
+				<div class="col-md-8">
+					<div class="mb-3">
+						<label for="name" class="form-label">Nome</label>
+						<input type="text" class="form-control" id="name" name="name" required>
+					</div>
+					<div class="mb-3">
+						<label for="theme" class="form-label">Tema</label>
+						<input type="text" class="form-control" id="theme" name="theme" required>
+					</div>
+					<div class="mb-3">
+						<label for="startDateTime" class="form-label">Data e Ora Inizio</label>
+						<input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime" required>
+					</div>
+					<div class="mb-3">
+						<label for="endDateTime" class="form-label">Data e Ora Fine</label>
+						<input type="datetime-local" class="form-control" id="endDateTime" name="endDateTime" required>
+					</div>
+					<div class="mb-3">
+						<label for="cost" class="form-label">Costo</label>
+						<input type="number" class="form-control" id="cost" name="cost" required>
+					</div>
+					<div class="mb-3">
+						<label for="nMaxParticipants" class="form-label">Numero Massimo di Partecipanti</label>
+						<input type="number" class="form-control" id="nMaxParticipants" name="nMaxParticipants" required>
+					</div>
+					<div class="mb-3">
+						<label for="local" class="form-label">Locale</label>
+						<select class="form-control" id="local" name="local" required>
+							<option th:each="local : ${locals}" th:value="${local.id}" th:text="${local.name}"></option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="fileImage" class="form-label">Carica immagine dell'evento (opzionale)</label>
+						<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*" onchange="loadFile(event)">
+						<div class="form-text text-light">Puoi caricare un'immagine per l'evento.</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-success w-100">Salva Evento</button>
+		</form>
+	</div>
+
+	<!-- Include il footer -->
+	<div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}"></div>
+
+	<!-- Script per la preview dell'immagine -->
+	<script>
+		function loadFile(event) {
+			var imageContainer = document.getElementById('eventImagePreview');
+			imageContainer.src = "";
+			const file = event.target.files[0];
+			if (file) {
+				imageContainer.src = URL.createObjectURL(file);
+			}
+		}
+	</script>
+</body>
+
+</html>

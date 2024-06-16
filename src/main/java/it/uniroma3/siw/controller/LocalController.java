@@ -66,7 +66,7 @@ public class LocalController {
 	@GetMapping("/admin/edit/local/{id}")
 	public String editLocalForm(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("local", localService.getLocal(id));
-		return "Admin/FormModifyLocal";
+		return "Admin/FormEditLocal";
 	}
 	
 	// Gestisce la modifica di un locale esistente

@@ -78,4 +78,15 @@ public class LocalService {
 			}
 		});
 	}
+
+	@Transactional
+	public List<Local> findAllSortedByName() {
+		List<Local> locals = new ArrayList<>();
+		Iterable<Local> iterable = this.localRepository.findAll();
+		for (Local local : iterable) {
+			locals.add(local);
+		}
+		locals.sort((local1, local2) -> local1.getName().compareToIgnoreCase(local2.getName()));
+		return locals;
+	}
 }

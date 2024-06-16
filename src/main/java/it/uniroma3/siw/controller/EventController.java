@@ -6,13 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Event;
 import it.uniroma3.siw.service.EventService;
+import it.uniroma3.siw.service.LocalService;
+
+import java.io.IOException;
 
 @Controller
 public class EventController {
 	@Autowired
 	private EventService eventService;
+	
+	@Autowired
+	private LocalService localService;
 
 	// Mostra la pagina con l'elenco di tutti gli eventi
 	@GetMapping("/events")
@@ -34,10 +43,40 @@ public class EventController {
 		return "Admin/indexEventsAdmin";
 	}
 
-	@PostMapping("/admin/delete/event/{id}")
-	public String deleteCuoco(@PathVariable("id") Long id) {
-		eventService.deleteById(id);
+	// Mostra la pagina per creare un nuovo evento
+	@GetMapping("/admin/add/event")
+	public String addEventForm(Model model) {
+		model.addAttribute("event", new Event());
+		model.addAttribute("locals", localService.findAllSortedByName());
+		return "Admin/FormAddEvent";
+	}
+
+	// Gestisce l'inserimento di un nuovo evento
+	@PostMapping("/admin/add/event")
+	public String addEvent(Event event, @RequestParam("fileImage") MultipartFile file) throws IOException {
+		eventService.saveEvent(event, file);
 		return "redirect:/admin/events";
 	}
 
+	// Mostra la pagina per modificare un evento esistente
+	@GetMapping("/admin/edit/event/{id}")
+	public String editEventForm(@PathVariable("id") Long id, Model model) {
+		Event event = eventService.getEvent(id);
+		model.addAttribute("event", event);
+		return "Admin/FormEditEvent";
+	}
+
+	// Gestisce la modifica di un evento esistente
+	@PostMapping("/admin/edit/event/{id}")
+	public String editEvent(@PathVariable("id") Long id, Event eventDetails, @RequestParam("fileImage") MultipartFile file) throws IOException {
+		eventService.updateEvent(id, eventDetails, file);
+		return "redirect:/admin/events";
+	}
+
+	// Elimina un evento
+	@PostMapping("/admin/delete/event/{id}")
+	public String deleteEvent(@PathVariable("id") Long id) {
+		eventService.deleteById(id);
+		return "redirect:/admin/events";
+	}
 }
