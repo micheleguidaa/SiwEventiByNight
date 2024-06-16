@@ -19,7 +19,7 @@ public class Credentials {
 	private String password;
 	private String role;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private User user;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Owner owner;

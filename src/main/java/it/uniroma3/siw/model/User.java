@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +26,15 @@ public class User {
 	
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL, orphanRemoval = true)  
 	private List<Reservation> reservations;
+	
+	public Credentials getCredentials() {
+		return credentials;
+	}
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
+	}
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Credentials credentials;
 	
 	public List<Reservation> getReservations() {
 		return reservations;
