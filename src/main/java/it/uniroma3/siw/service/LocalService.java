@@ -43,6 +43,21 @@ public class LocalService {
 	}
 
 	@Transactional
+	public Local updateLocal(Long id, Local localDetails, MultipartFile file) throws IOException {
+		Local local = this.getLocal(id);
+		if (local != null) {
+			local.setName(localDetails.getName());
+			local.setAddress(localDetails.getAddress());
+			if (!file.isEmpty()) {
+				String fileUrl = fileService.saveFile(file, UPLOADED_FOLDER);
+				local.setUrlImage(fileUrl);
+			}
+			return this.localRepository.save(local);
+		}
+		return null;
+	}
+
+	@Transactional
 	public List<Local> getAllLocals() {
 		List<Local> result = new ArrayList<>();
 		Iterable<Local> iterable = this.localRepository.findAll();
@@ -63,6 +78,4 @@ public class LocalService {
 			}
 		});
 	}
-
-
 }

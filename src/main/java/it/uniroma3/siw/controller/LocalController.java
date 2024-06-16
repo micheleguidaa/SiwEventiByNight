@@ -61,4 +61,18 @@ public class LocalController {
 		localService.deleteById(id);
 		return "redirect:/admin/locals";
 	}
+	
+	// Mostra la pagina per modificare un locale esistente
+	@GetMapping("/admin/edit/local/{id}")
+	public String editLocalForm(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("local", localService.getLocal(id));
+		return "Admin/FormModifyLocal";
+	}
+	
+	// Gestisce la modifica di un locale esistente
+	@PostMapping("/admin/edit/local/{id}")
+	public String editLocal(@PathVariable("id") Long id, Local local, @RequestParam("fileImage") MultipartFile file) throws IOException {
+		localService.updateLocal(id, local, file);
+		return "redirect:/admin/locals";
+	}
 }
