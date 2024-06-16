@@ -15,6 +15,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	private LocalDateTime reservationDateTime;
+	@ManyToOne
 	private User user;
 	@OneToOne
 	private Event event;

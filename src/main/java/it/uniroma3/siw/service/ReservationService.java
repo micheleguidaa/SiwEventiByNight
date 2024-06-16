@@ -30,4 +30,8 @@ public class ReservationService {
 		reservationRepository.save(reservation);
 	}
 
+	public void deleteById(Long id) {
+		reservationRepository.deleteById(id);
+	}
+
 }

@@ -24,7 +24,7 @@
 						<div class="d-flex w-100">
 							<a th:href="@{'/event' + '/' + ${reservation.event.id}}"
 								class="btn btn-primary flex-grow-1 me-2">Evento</a>
-							<form th:action="@{'/cancel/reservation/' + ${reservation.id}}" method="post"
+							<form th:action="@{'/reservations/deleteReservation/' + ${reservation.id}}" method="post"
 								class="flex-grow-1">
 								<button type="submit" class="btn btn-danger w-100">Elimina</button>
 							</form>

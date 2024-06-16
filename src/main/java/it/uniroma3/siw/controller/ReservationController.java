@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +34,14 @@ public class ReservationController {
 	public String addReservation(@Valid @ModelAttribute("reservation") Reservation reservation,
 			 @RequestParam("eventId") Long eventId, @RequestParam("userId") Long userId, Model model) {
 		reservationService.registerReservation(reservation, userId, eventId);
-		return "redirect:/leMieRicette";
+		return "redirect:/reservations";
+	}
+	
+
+	@PostMapping("/reservations/deleteReservation/{id}")
+	public String deleteReservation(@PathVariable("id") Long id) {
+		reservationService.deleteById(id);
+		return "redirect:/reservations";
 	}
 
 }
