@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
-<head th:replace="~{fragments/header :: header(title='SiwEventi - Locale')}">
-    <link rel="stylesheet" href="path/to/bootstrap.min.css">
-    <link rel="stylesheet" href="path/to/your/custom/styles.css">
-</head>
+
+<head th:replace="~{fragments/header :: header(title='SiwEventi - Locale')}"></head>
+
 <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
     <div class="container mt-5 mb-5">
@@ -39,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
-    <script src="path/to/bootstrap.bundle.min.js"></script>
+    <div th:replace="~{fragments/footer :: footer}"></div>	
 </body>
+
 </html>
