@@ -23,4 +23,8 @@ public class LocalService {
 		public void deleteById(Long id) {
 			localRepository.deleteById(id);
 		}
+
+		public void save(Local local) {
+			localRepository.save(local);
+		}
 }
