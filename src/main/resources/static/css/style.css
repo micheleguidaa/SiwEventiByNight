@@ -158,6 +158,19 @@ footer {
     height: 320px;
 }
 
+.img-container {
+	height: 100px;
+	width: 100px;
+}
+
+.img-size {
+	height: 100px;
+}
+
+.text-small {
+	font-size: 0.8rem;
+}
+
 /* User Image Styles */
 .user-img {
     width: 100%; /* Ensures the image fits within the card's width */
