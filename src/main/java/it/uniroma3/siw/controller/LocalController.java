@@ -6,9 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Local;
 import it.uniroma3.siw.service.LocalService;
+
+import java.io.IOException;
 
 @Controller
 public class LocalController {
@@ -19,21 +23,21 @@ public class LocalController {
     // Visualizza tutti locali
     @GetMapping("/locals")
     public String showLocals(Model model) {
-        model.addAttribute("locals", localService.findAll());
+        model.addAttribute("locals", localService.getAllLocals());
         return "locals"; 
     }
     
     // Visualizza un singolo locale
 	@GetMapping("/local/{id}")
 	public String getLocal(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("local", localService.findById(id));
+		model.addAttribute("local", localService.getLocal(id));
         return "local";
 	}
 	
 	// Mostra la pagina con l'elenco di tutti i locali per l'amministratore
 	@GetMapping("/admin/locals")
 	public String showAdminLocals(Model model) {
-		model.addAttribute("locals", localService.findAll());
+		model.addAttribute("locals", localService.getAllLocals());
 		return "Admin/indexLocalsAdmin";
 	}
 	
@@ -46,8 +50,8 @@ public class LocalController {
 	
 	// Gestisce l'inserimento di un nuovo locale
 	@PostMapping("/admin/addLocal")
-	public String addLocal(Local local) {
-		localService.save(local);
+	public String addLocal(Local local, @RequestParam("fileImage") MultipartFile file) throws IOException {
+		localService.saveLocal(local, file);
 		return "redirect:/admin/locals";
 	}
 

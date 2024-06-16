@@ -17,7 +17,7 @@
 				<div class="col-md-4">
 					<div class="card mb-4">
 						<div class="card-header">
-							<h5 class="card-title mb-0">Immagini del Locale</h5>
+							<h5 class="card-title mb-0">Immagine del Locale</h5>
 						</div>
 						<div class="card-body p-0">
 							<div class="image-container">
@@ -40,10 +40,10 @@
 						<input type="text" class="form-control" id="address" name="address" required>
 					</div>
 					<div class="mb-3">
-						<label for="fileImages" class="form-label">Carica immagini del locale (opzionale)</label>
-						<input type="file" class="form-control" id="fileImages" name="fileImages" accept="image/*"
-							multiple onchange="loadFiles(event)">
-						<div class="form-text text-light">Puoi caricare più immagini del locale.</div>
+						<label for="fileImage" class="form-label">Carica immagine del locale (opzionale)</label>
+						<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
+							onchange="loadFile(event)">
+						<div class="form-text text-light">Puoi caricare un'immagine del locale.</div>
 					</div>
 				</div>
 			</div>
@@ -55,14 +55,14 @@
 	<!-- Include il footer -->
 	<div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}"></div>
 
-	<!-- Script per la preview delle immagini -->
+	<!-- Script per la preview dell'immagine -->
 	<script>
-		function loadFiles(event) {
+		function loadFile(event) {
 			var imageContainer = document.getElementById('localImagePreview');
 			imageContainer.src = "";
-			const files = event.target.files;
-			if (files.length > 0) {
-				imageContainer.src = URL.createObjectURL(files[0]);
+			const file = event.target.files[0];
+			if (file) {
+				imageContainer.src = URL.createObjectURL(file);
 			}
 		}
 	</script>
