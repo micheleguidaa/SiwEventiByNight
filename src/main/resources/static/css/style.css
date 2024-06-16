@@ -158,6 +158,11 @@ footer {
     height: 320px;
 }
 
+.img-sm {
+	max-width: 180px; 
+	max-height: 180px;
+}
+
 /* User Image Styles */
 .user-img {
     width: 100%; /* Ensures the image fits within the card's width */
