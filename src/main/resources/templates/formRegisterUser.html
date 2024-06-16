@@ -20,7 +20,6 @@
 			</div>
 
 			<div class="row">
-
 				<!-- Colonna Immagine -->
 				<div class="col-md-4">
 					<div class="card mb-4">
@@ -29,72 +28,80 @@
 						</div>
 						<div class="card-body p-0">
 							<div class="image-container">
-								<img src="/images/default/senzaFoto.jpeg" class="rounded img-lg"
-									alt="Immagine Utente" id="utenteImagePreview" />
+								<img src="/images/default/senzaFoto.jpeg" class="rounded img-lg" alt="Immagine Utente"
+									id="utenteImagePreview" />
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Colonna Inserimento Dati -->
-				<div class="col-md-4">
-					<div class="mb-3">
-						<label for="name" class="form-label">Nome</label>
-						<input type="text" class="form-control" id="name" name="name" required>
-						<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}"
-							th:style="'color:red'"></span>
-					</div>
-					<div class="mb-3">
-						<label for="surname" class="form-label">Cognome</label>
-						<input type="text" class="form-control" id="surname" name="surname" required>
-						<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname   }"
-							th:style="'color:red'"></span>
-					</div>
-					<div class="mb-3">
-						<label for="dateOfBirth" class="form-label">Data di Nascita</label>
-						<input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
-					</div>
-					<div class="mb-3">
-						<label for="fileImage" class="form-label">Carica una foto del cuoco (opzionale)</label>
-						<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
-							onchange="loadFile(event)">
-						<div class="form-text text-light">Assicurati di caricare una foto chiara e recente del cuoco.</div>
-					</div>
-				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<!-- Colonna Inserimento Dati -->
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="name" class="form-label">Nome</label>
+								<input type="text" class="form-control" id="name" name="name" required>
+								<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}"
+									th:style="'color:red'"></span>
+							</div>
+							<div class="mb-3">
+								<label for="surname" class="form-label">Cognome</label>
+								<input type="text" class="form-control" id="surname" name="surname" required>
+								<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname   }"
+									th:style="'color:red'"></span>
+							</div>
+							<div class="mb-3">
+								<label for="dateOfBirth" class="form-label">Data di Nascita</label>
+								<input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+							</div>
+							<div class="mb-3">
+								<label for="fileImage" class="form-label">Carica una foto del cuoco (opzionale)</label>
+								<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
+									onchange="loadFile(event)">
+								<div class="form-text text-light">Assicurati di caricare una foto chiara e recente del cuoco.
+								</div>
+							</div>
+						</div>
 
-				<!-- Colonna Dati di Accesso -->
-				<div class="col-md-4">
-					<div class="mb-3">
-						<label for="username" class="form-label">Username</label>
-						<input type="text" class="form-control" id="username" name="username" required>
-
-					</div>
-					<div class="mb-3">
-						<label for="email" class="form-label">Email</label>
-						<input type="email" class="form-control" id="email" name="email" required>
-					</div>
-					<div class="mb-3">
-						<label for="password" class="form-label">Password</label>
-						<div class="input-group">
-							<input type="password" class="form-control" id="password" name="password" required>
-							<button type="button" class="btn btn-outline-secondary" id="togglePassword">
-								<i class="bi bi-eye"></i>
-							</button>
+						<!-- Colonna Dati di Accesso -->
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="username" class="form-label">Username</label>
+								<input type="text" class="form-control" id="username" name="username" required>
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label>
+								<input type="email" class="form-control" id="email" name="email" required>
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label>
+								<div class="input-group">
+									<input type="password" class="form-control" id="password" name="password" required>
+									<button type="button" class="btn btn-outline-secondary" id="togglePassword">
+										<i class="bi bi-eye"></i>
+									</button>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="confirmPassword" class="form-label">Conferma Password</label>
+								<div class="input-group">
+									<input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+										required>
+									<button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword">
+										<i class="bi bi-eye"></i>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="mb-3">
-						<label for="confirmPassword" class="form-label">Conferma Password</label>
-						<div class="input-group">
-							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-								required>
-							<button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword">
-								<i class="bi bi-eye"></i>
-							</button>
+					<!-- Pulsante di Conferma -->
+					<div class="row mt-3">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary w-100">Conferma</button>
 						</div>
 					</div>
 				</div>
-
-				<button type="submit" class="btn btn-primary w-100">Salva Cuoco</button>
 			</div>
 		</form>
 	</div>
