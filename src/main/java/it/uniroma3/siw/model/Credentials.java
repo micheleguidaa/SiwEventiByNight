@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +20,7 @@ public class Credentials {
 
 	@OneToOne
 	private User user;
-	@OneToOne(cascade = CascadeType.ALL)
-	private Owner owner;
+
 	
 	public String getUsername() {
 		return username;

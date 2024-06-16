@@ -33,5 +33,10 @@ public class ReservationService {
 	public void deleteById(Long id) {
 		reservationRepository.deleteById(id);
 	}
+	
+	// Implementare la logica per verificare se un utente è già prenotato
+	public boolean isUserReservedForEvent(Long eventId, Long userId) {
+		return reservationRepository.existsByEventIdAndUserId(eventId, userId);
+	}
 
 }

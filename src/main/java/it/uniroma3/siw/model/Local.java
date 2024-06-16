@@ -21,8 +21,7 @@ public class Local {
 	
 	@OneToMany(mappedBy = "local", cascade = CascadeType.ALL, orphanRemoval = true)  
 	private List<Event> events;
-	@ManyToOne 
-	private Owner owner;
+
 
 	public Long getId() {
 		return id;
