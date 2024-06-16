@@ -11,8 +11,8 @@
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
 	<div class="container my-5">
-		<h1 class="text-center mb-4">Lista delle Prenotazioni</h1>
-		<div th:if="${reservations == null || reservations.isEmpty()}" class="alert alert-warning">
+		<h1 class="my-5 text-center mb-4">Lista delle Prenotazioni</h1>
+		<div th:if="${reservations == null || reservations.isEmpty()}" class="alert alert-info text-center">
 			Non ci sono prenotazioni nel sistema
 		</div>
 		<div class="table-responsive">

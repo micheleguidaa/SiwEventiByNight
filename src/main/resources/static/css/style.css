@@ -192,7 +192,7 @@ footer {
     border-radius: 50%;
     display: block;
     margin: 0 auto;
-    box-shadow: 0 0 0 2px var(--white-color);
+    box-shadow: 0 0 0 2px var(--secondary-color);
 }
 
 /* Specific Class for Image Filters */
