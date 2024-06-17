@@ -31,7 +31,7 @@ public class UserService {
 	private CredentialsService credentialsService;
 
 	private static final String UPLOADED_FOLDER = "uploads/utenti2/";
-	private static final String DEFAULT_IMAGE = "/images/default/senzaFoto.jpeg";
+	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoUser.jpeg";
 
 	/**
 	 * This method retrieves a User from the DB based on its ID.
