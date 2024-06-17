@@ -1,210 +1,237 @@
 :root {
-    --primary-color: #8E24AA; 
-    --secondary-color: #0097A7;
-    --light-color: rgb(27, 27, 27); 
-    --dark-color: rgb(75, 19, 89); 
-    --hover-text-color: #B39DDB;
-    --white-color: #ffffff;
-    --card-bg-color: #303030;
-    --card-border-color: #7B1FA2; 
-    --card-box-shadow: rgba(255, 255, 255, 0.1);
+	--primary-color: #8E24AA;
+	--secondary-color: #0097A7;
+	--light-color: rgb(27, 27, 27);
+	--dark-color: rgb(75, 19, 89);
+    --dark-color-button: #5F276D;
+    --dark-secondary-color-button: #144349;
+	--hover-text-color: #B39DDB;
+	--white-color: #ffffff;
+	--card-bg-color: #303030;
+	--card-border-color: #7B1FA2;
+	--card-box-shadow: rgba(255, 255, 255, 0.1);
 }
 
 /* Global Styles */
 body {
-    padding-top: 3rem;
-    background-color: var(--light-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    color: var(--white-color);
+	padding-top: 3rem;
+	background-color: var(--light-color);
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	color: var(--white-color);
 }
 
-a, .btn-primary, .navbar, .card, footer, .recipe-list li, .scrollable-container, .account-icon, .nav-link, .navbar-brand {
-    color: var(--white-color);
+a,
+.btn-primary,
+.navbar,
+.card,
+footer,
+.recipe-list li,
+.scrollable-container,
+.account-icon,
+.nav-link,
+.navbar-brand {
+	color: var(--white-color);
 }
 
-a:hover, .nav-link:hover, .navbar-brand:hover {
-    color: var(--hover-text-color);
+a:hover,
+.nav-link:hover,
+.navbar-brand:hover {
+	color: var(--hover-text-color);
 }
 
 a {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .gradient-bg {
-    background: linear-gradient(90deg, rgba(27, 27, 27, 0.7), rgba(75, 19, 89, 0.7));
+	background: linear-gradient(90deg, rgba(27, 27, 27, 0.7), rgba(75, 19, 89, 0.7));
 }
 
 
 /* Button Styles */
 .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 
+
 .btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+.btn-primary:focus{
+	background-color: var(--dark-color-button);
+	border-color: var(--dark-color-button);
+}
+
+.btn-primary:active{
+	background-color: var(--dark-secondary-color-button)!important;
+	border-color: var(--secondary-color)!important;
 }
 
 .btn-secondary {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+	background-color: var(--secondary-color);
+	border-color: var(--secondary-color);
 }
 
 .btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.btn-secondary:focus{
+	background-color: var(--dark-secondary-color-button);
+	border-color: var(--dark-secondary-color-button);
+}
+
+.btn-secondary:active{
+	background-color: var(--dark-color-button)!important;
+	border-color: var(--primary-color)!important;
 }
 
 /* Navbar Styles */
 .navbar {
-    background-color: var(--dark-color);
+	background-color: var(--dark-color);
 }
 
 /* Form Container Styles */
 .form-container {
-    background-color: var(--card-bg-color);
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem var(--card-box-shadow);
+	background-color: var(--card-bg-color);
+	padding: 2rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 0.5rem 1rem var(--card-box-shadow);
 }
 
 .form-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+	text-align: center;
+	margin-bottom: 1.5rem;
 }
 
 /* Card Styles */
 .card {
-    margin: 20px;
-    padding: 10px;
-    box-shadow: 0 4px 8px var(--card-box-shadow);
-    transition: transform 0.3s ease-in-out;
-    background-color: var(--card-bg-color);
+	margin: 20px;
+	padding: 10px;
+	box-shadow: 0 4px 8px var(--card-box-shadow);
+	transition: transform 0.3s ease-in-out;
+	background-color: var(--card-bg-color);
 }
 
 .card:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }
 
 .no-hover {
-    transition: none;
+	transition: none;
 }
 
 .no-hover:hover {
-    transform: none;
+	transform: none;
 }
 
 .card-body {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .card-body .btn {
-    margin-top: auto;
+	margin-top: auto;
 }
 
 /* Footer Styles */
 footer {
-    background-color: var(--primary-color);
+	background-color: var(--primary-color);
 }
 
 /* Recipe List Styles */
 .recipe-list ul {
-    list-style: none;
-    padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 .recipe-list li {
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--card-border-color);
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
-    box-shadow: 0 2px 4px var(--card-box-shadow);
+	background-color: var(--card-bg-color);
+	border: 1px solid var(--card-border-color);
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding: 10px;
+	box-shadow: 0 2px 4px var(--card-box-shadow);
 }
 
 .recipe-list li a {
-    color: var(--primary-color);
-    font-weight: bold;
-    text-decoration: none;
+	color: var(--primary-color);
+	font-weight: bold;
+	text-decoration: none;
 }
 
 .recipe-list li a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* Image Styles */
 .img,
 .img-lg,
 .account-icon {
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 .img,
 .img-lg {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .img {
-    height: 260px;
+	height: 260px;
 }
 
 .img-lg {
-    height: 320px;
+	height: 320px;
 }
 
 
 .img-sm {
 	width: 100%;
-    object-fit: cover;
-    object-position: center;
-	max-width: 180px; 
+	object-fit: cover;
+	object-position: center;
+	max-width: 180px;
 	max-height: 110px;
 }
 
 .icon-invert {
-    filter: invert(1);
+	filter: invert(1);
 }
 
 /* User Image Styles */
 .user-img {
-    width: 100%; /* Ensures the image fits within the card's width */
-    height: 350px; /* Set a fixed height */
-    object-fit: cover; /* Ensure the image covers the set dimensions without distortion */
-    object-position: center; /* Centers the image vertically */
-    border-radius: 10px; /* Optional: Keep the same border radius */
+	width: 100%;
+	/* Ensures the image fits within the card's width */
+	height: 350px;
+	/* Set a fixed height */
+	object-fit: cover;
+	/* Ensure the image covers the set dimensions without distortion */
+	object-position: center;
+	/* Centers the image vertically */
+	border-radius: 10px;
+	/* Optional: Keep the same border radius */
 }
 
 /* Account Icon Styles */
 .account-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
-    box-shadow: 0 0 0 2px var(--secondary-color);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: block;
+	margin: 0 auto;
+	box-shadow: 0 0 0 2px var(--secondary-color);
 }
 
 /* Specific Class for Image Filters */
 .remove-ingrediente img {
-    filter: invert(1);
+	filter: invert(1);
 }
 
 /* Info Container Styles */
 .container-info {
-    background-color: var(--white-color);
-    color: var(--dark-color);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px var(--card-box-shadow);
+	background-color: var(--white-color);
+	color: var(--dark-color);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px var(--card-box-shadow);
 }
