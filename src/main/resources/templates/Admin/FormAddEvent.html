@@ -1,101 +1,105 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head th:replace="~{fragments/header :: header(title='SiwFood - Creazione Evento')}"></head>
-
 <body>
-	<!-- Include la navbar -->
-	<div th:if="${ruolo == 'ADMIN'}">
-		<div th:replace="~{fragments/navbar :: navbar}"></div>
-	</div>
-	<h2 class="text-center">Crea Nuovo Evento</h2>
-	<div class="container form-container mt-5 mb-5">
-		<form th:action="@{/admin/add/event}" method="post" enctype="multipart/form-data">
-			<div class="row">
-				<!-- Colonna Immagine -->
-				<div class="col-md-4">
-					<div class="card mb-4">
-						<div class="card-header">
-							<h5 class="card-title mb-0">Immagine dell'Evento</h5>
-						</div>
-						<div class="card-body p-0">
-							<div class="image-container">
-								<img src="/images/default/senzaFotoEvent.jpeg" class="rounded img" alt="Immagine Evento"
-									id="eventImagePreview" />
-							</div>
-						</div>
-					</div>
-				</div>
+    <!-- Include la navbar -->
+    <div th:if="${ruolo == 'ADMIN'}">
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+    </div>
+    <h2 class="text-center">Crea Nuovo Evento</h2>
+    <div class="container form-container mt-5 mb-5">
+        <form id="eventForm" th:action="@{/admin/add/event}" method="post" enctype="multipart/form-data" th:object="${event}">
+            <div class="row">
+                <!-- Colonna Immagine -->
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Immagine dell'Evento</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="image-container">
+                                <img src="/images/default/senzaFotoEvent.jpeg" class="rounded img" alt="Immagine Evento"
+                                     id="eventImagePreview" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-				<!-- Colonna Inserimento Dati Parte 1 -->
-				<div class="col-md-4">
-					<div class="mb-3">
-						<label for="name" class="form-label">Nome</label>
-						<input type="text" class="form-control" id="name" name="name" required>
-					</div>
-					<div class="mb-3">
-						<label for="theme" class="form-label">Tema</label>
-						<input type="text" class="form-control" id="theme" name="theme" required>
-					</div>
-					<div class="mb-3">
-						<label for="startDateTime" class="form-label">Data e Ora Inizio</label>
-						<input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime"
-							required>
-					</div>
-					<div class="mb-3">
-						<label for="endDateTime" class="form-label">Data e Ora Fine</label>
-						<input type="datetime-local" class="form-control" id="endDateTime" name="endDateTime" required>
-					</div>
-				</div>
+                <!-- Colonna Inserimento Dati Parte 1 -->
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" name="name" th:field="*{name}" required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="theme" class="form-label">Tema</label>
+                        <input type="text" class="form-control" id="theme" name="theme" th:field="*{theme}" required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('theme')}" th:errors="*{theme}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startDateTime" class="form-label">Data e Ora Inizio</label>
+                        <input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime" th:field="*{startDateTime}"
+                               required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('startDateTime')}" th:errors="*{startDateTime}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDateTime" class="form-label">Data e Ora Fine</label>
+                        <input type="datetime-local" class="form-control" id="endDateTime" name="endDateTime" th:field="*{endDateTime}" required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('endDateTime')}" th:errors="*{endDateTime}"></div>
+                    </div>
+                </div>
 
-				<!-- Colonna Inserimento Dati Parte 2 -->
-				<div class="col-md-4">
-					<div class="mb-3">
-						<label for="cost" class="form-label">Costo</label>
-						<input type="number" class="form-control" id="cost" name="cost" required>
-					</div>
-					<div class="mb-3">
-						<label for="nMaxParticipants" class="form-label">Numero Massimo di Partecipanti</label>
-						<input type="number" class="form-control" id="nMaxParticipants" name="nMaxParticipants"
-							required>
-					</div>
-					<div class="mb-3">
-						<label for="local" class="form-label">Locale</label>
-						<select class="form-control" id="local" name="local" required>
-							<option th:each="local : ${locals}" th:value="${local.id}" th:text="${local.name}"></option>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label for="fileImage" class="form-label">Carica immagine dell'evento (opzionale)</label>
-						<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
-							onchange="loadFile(event)">
-						<div class="form-text text-light">Puoi caricare un'immagine per l'evento.</div>
-					</div>
-				</div>
-			</div>
-			<!-- Bottoni -->
-			<div class="row">
-				<div class="col-md-8 offset-md-4">
-					<button type="submit" class="btn btn-primary w-100">Salva Evento</button>
-				</div>
-			</div>
-		</form>
-	</div>
+                <!-- Colonna Inserimento Dati Parte 2 -->
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">Costo</label>
+                        <input type="number" class="form-control" id="cost" name="cost" th:field="*{cost}" required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nMaxParticipants" class="form-label">Numero Massimo di Partecipanti</label>
+                        <input type="number" class="form-control" id="nMaxParticipants" name="nMaxParticipants" th:field="*{nMaxParticipants}"
+                               required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('nMaxParticipants')}" th:errors="*{nMaxParticipants}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="local" class="form-label">Locale</label>
+                        <select class="form-control" id="local" name="local" th:field="*{local}" required>
+                            <option th:each="local : ${locals}" th:value="${local.id}" th:text="${local.name}"></option>
+                        </select>
+                        <div class="text-danger" th:if="${#fields.hasErrors('local')}" th:errors="*{local}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fileImage" class="form-label">Carica immagine dell'evento (opzionale)</label>
+                        <input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
+                               onchange="loadFile(event)">
+                        <div class="form-text text-light">Puoi caricare un'immagine per l'evento.</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottoni -->
+            <div class="row">
+                <div class="col-md-8 offset-md-4">
+                    <button type="submit" class="btn btn-primary w-100">Salva Evento</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-	<!-- Include il footer -->
-	<div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}"></div>
+    <!-- Include il footer -->
+    <div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}"></div>
 
-	<!-- Script per la preview dell'immagine -->
-	<script>
-		function loadFile(event) {
-			var imageContainer = document.getElementById('eventImagePreview');
-			imageContainer.src = "";
-			const file = event.target.files[0];
-			if (file) {
-				imageContainer.src = URL.createObjectURL(file);
-			}
-		}
-	</script>
+    <!-- Script per la preview dell'immagine -->
+    <script>
+        function loadFile(event) {
+            var imageContainer = document.getElementById('eventImagePreview');
+            imageContainer.src = "";
+            const file = event.target.files[0];
+            if (file) {
+                imageContainer.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
 </body>
-
 </html>

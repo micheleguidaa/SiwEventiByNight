@@ -3,15 +3,21 @@ package it.uniroma3.siw.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Event;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.EventService;
 import it.uniroma3.siw.service.LocalService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import java.io.IOException;
 
@@ -53,9 +59,13 @@ public class EventController {
 
 	// Gestisce l'inserimento di un nuovo evento
 	@PostMapping("/admin/add/event")
-	public String addEvent(Event event, @RequestParam("fileImage") MultipartFile file) throws IOException {
+	public String addEvent(@Valid @ModelAttribute("event")Event event,BindingResult eventBindingResult,  @RequestParam("fileImage") MultipartFile file) throws IOException {
+		if(!eventBindingResult.hasErrors()) {
 		eventService.saveEvent(event, file);
 		return "redirect:/admin/events";
+		}
+	    return "Admin/FormAddEvent";
+
 	}
 
 	// Mostra la pagina per modificare un evento esistente

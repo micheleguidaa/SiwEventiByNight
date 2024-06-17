@@ -10,34 +10,46 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Event {
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotBlank
-	private String name;
-	@NotBlank
-	private String theme;//da rivedere il concetto di tema
-	@NotBlank
-    @FutureOrPresent
-	private LocalDateTime startDateTime;
-	@NotBlank
-    @FutureOrPresent //andrebbe rivisto
-	private LocalDateTime endDateTime;
-	private Long cost;
-	private Long nMaxParticipants;
-	private String urlImage;
-	
-	@OneToMany(mappedBy="event",cascade = CascadeType.ALL)
-	private List<Reservation> reservation;
-	@ManyToOne 
-	private Local local;
+
+    @NotBlank(message = "Il nome è obbligatorio")
+    private String name;
+
+    @NotBlank(message = "Il tema è obbligatorio")
+    private String theme;
+
+    @NotNull(message = "La data e ora di inizio è obbligatoria")
+    @FutureOrPresent(message = "La data e ora di inizio deve essere nel futuro o presente")
+    private LocalDateTime startDateTime;
+
+    @NotNull(message = "La data e ora di fine è obbligatoria")
+    @FutureOrPresent(message = "La data e ora di fine deve essere nel futuro o presente")
+    private LocalDateTime endDateTime;
+
+    @NotNull(message = "Il costo è obbligatorio")
+    @Positive(message = "Il costo deve essere positivo")
+    private Long cost;
+
+    @NotNull(message = "Il numero massimo di partecipanti è obbligatorio")
+    @Positive(message = "Il numero massimo di partecipanti deve essere positivo")
+    private Long nMaxParticipants;
+
+    private String urlImage;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Reservation> reservation;
+
+    @ManyToOne
+    private Local local;
 
 	public Long getId() {
 		return id;
