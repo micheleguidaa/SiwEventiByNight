@@ -34,8 +34,7 @@ public class AuthenticationController {
     @Autowired
 	private UserService userService;
 
-    	
-
+   
 	@GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {
 		return "formLogin";

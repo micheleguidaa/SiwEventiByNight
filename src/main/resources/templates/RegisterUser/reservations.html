@@ -27,7 +27,7 @@
 							<div class="d-flex flex-column align-items-start ">
 								<h6 class="mb-1 text-center" th:text="${reservation.event.name}">Nome Evento</h6>
 								<p class="mb-1"
-									th:text="'Data e Ora Prenotazione: ' + ${reservation.reservationDateTime}">
+									th:text="'Data Evento: ' + ${#temporals.format(reservation.event.startDateTime, 'dd MMMM yyyy')}">
 									Data
 									e Ora Prenotazione</p>
 							</div>

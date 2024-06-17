@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name = "users") // cambiamo nome perchè in postgres user e' una parola riservata
@@ -18,8 +21,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotBlank
 	private String name;
+	@NotBlank
 	private String surname;
+    @NotNull
+    @PastOrPresent
 	private LocalDate dateOfBirth;
 	private String urlImage;
     

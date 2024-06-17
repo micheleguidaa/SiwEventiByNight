@@ -38,7 +38,7 @@ public class GlobalController {
         return null;
     }
     
-    
+  
     @ModelAttribute("CurrentUser")
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

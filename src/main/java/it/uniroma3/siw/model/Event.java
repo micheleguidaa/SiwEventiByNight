@@ -11,15 +11,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 public class Event {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	@NotBlank
 	private String name;
-	private String theme;
+	@NotBlank
+	private String theme;//da rivedere il concetto di tema
+	@NotBlank
+    @FutureOrPresent
 	private LocalDateTime startDateTime;
+	@NotBlank
+    @FutureOrPresent //andrebbe rivisto
 	private LocalDateTime endDateTime;
 	private Long cost;
 	private Long nMaxParticipants;
