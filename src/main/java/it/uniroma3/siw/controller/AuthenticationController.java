@@ -33,6 +33,9 @@ public class AuthenticationController {
 
     @Autowired
 	private UserService userService;
+    
+    @Autowired
+    private CredentialsValidator credentialsValidator;
 
    
 	@GetMapping(value = "/login") 
@@ -80,15 +83,16 @@ public class AuthenticationController {
 	
 
 	@PostMapping("/register")
-	public String registerCuoco(@Valid @ModelAttribute("user") User user,
+	public String registerUser(@Valid @ModelAttribute("user") User user,
 	                            BindingResult cuocoBindingResult, 
 	                            @Valid @ModelAttribute("credentials") Credentials credentials,
-	                            BindingResult credenzialiBindingResult,
+	                            BindingResult credentialsBindingResult,
 	                            @RequestParam("fileImage") MultipartFile file,
 	                            HttpSession session,
 	                            Model model) {
 	    // se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
-	    if (!cuocoBindingResult.hasErrors() && !credenzialiBindingResult.hasErrors()) {
+	    this.credentialsValidator.validate(credentials, credentialsBindingResult);
+	    if (!cuocoBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
 	        try {
 	        	userService.registerUser(user, credentials, file);
 	        } catch (IOException e) {

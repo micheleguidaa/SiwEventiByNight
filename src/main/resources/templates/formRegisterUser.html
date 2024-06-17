@@ -14,9 +14,10 @@
         </div>
 
         <form th:action="@{/register}" method="post" enctype="multipart/form-data" th:object="${credentials}">
-
-            <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger text-center" role="alert">
+			<div class=" d-flex justify-content-center">
+            <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger text-center w-50" role="alert">
                 <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="mb-0">...</p>
+            </div>
             </div>
 
             <div class="row">
