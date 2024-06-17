@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<head th:replace="~{fragments/header :: header(title='SiwEventi - Gestione Risultati')}"></head>
+<head th:replace="~{fragments/header :: header(title='SiwEventi - Risultati')}"></head>
 
 <body>
     <!-- Include la navbar -->
@@ -25,8 +25,8 @@
                         <h5 class="card-title" th:text="${evento.name}">Nome Evento</h5>
                         <div class="mt-3">
                             <div class="d-flex">
-                                <a th:href="@{'/admin/update/evento/' + ${evento.id}}" class="btn btn-primary flex-grow-1 me-1">Modifica</a>
-                                <form th:action="@{'/admin/delete/evento/' + ${evento.id}}" method="post" class="flex-grow-1">
+                                <a th:href="@{'/admin/edit/event/' + ${evento.id}}" class="btn btn-primary flex-grow-1 me-1">Modifica</a>
+                                <form th:action="@{'/admin/delete/event/' + ${evento.id}}" method="post" class="flex-grow-1">
                                     <button type="submit" class="btn btn-danger w-100">Elimina</button>
                                 </form>
                             </div>
@@ -49,8 +49,8 @@
                         <h5 class="card-title" th:text="${locale.name}">Nome Locale</h5>
                         <div class="mt-3">
                             <div class="d-flex">
-                                <a th:href="@{'/admin/update/locale/' + ${locale.id}}" class="btn btn-primary flex-grow-1 me-1">Modifica</a>
-                                <form th:action="@{'/admin/delete/locale/' + ${locale.id}}" method="post" class="flex-grow-1">
+                                <a th:href="@{'/admin/edit/local/' + ${locale.id}}" class="btn btn-primary flex-grow-1 me-1">Modifica</a>
+                                <form th:action="@{'/admin/delete/local/' + ${locale.id}}" method="post" class="flex-grow-1">
                                     <button type="submit" class="btn btn-danger w-100">Elimina</button>
                                 </form>
                             </div>
