@@ -65,8 +65,8 @@ a {
 }
 
 .btn-primary:active{
-	background-color: var(--dark-secondary-color-button)!important;
-	border-color: var(--secondary-color)!important;
+	background-color: var(--dark-color-button)!important;
+	border-color: var(--dark-color-button)!important;
 }
 
 .btn-secondary {
@@ -81,8 +81,8 @@ a {
 }
 
 .btn-secondary:active{
-	background-color: var(--dark-color-button)!important;
-	border-color: var(--primary-color)!important;
+	background-color: var(--dark-secondary-color-button)!important;
+	border-color: var(--dark-secondary-color-button)!important;
 }
 
 /* Navbar Styles */
