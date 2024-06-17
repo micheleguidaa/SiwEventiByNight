@@ -24,7 +24,7 @@ public class LocalService {
 	private FileService fileService;
 
 	private static final String UPLOADED_FOLDER = "uploads/locals/";
-	private static final String DEFAULT_IMAGE = "/images/default/senzaFoto.jpeg";
+	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoLocal.jpeg";
 
 	@Transactional
 	public Local getLocal(Long id) {

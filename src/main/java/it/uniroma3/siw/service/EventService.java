@@ -21,7 +21,7 @@ public class EventService {
 	private FileService fileService;
 
 	private static final String UPLOADED_FOLDER = "uploads/events/";
-	private static final String DEFAULT_IMAGE = "/images/default/senzaFoto.jpeg";
+	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoEvent.jpeg";
 
 	// Ritorna una lista di tutti gli eventi
 	public List<Event> findAll() {
