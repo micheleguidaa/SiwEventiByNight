@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Event;
 import it.uniroma3.siw.model.Local;
 import it.uniroma3.siw.repository.LocalRepository;
 
@@ -59,11 +60,7 @@ public class LocalService {
 
 	@Transactional
 	public List<Local> getAllLocals() {
-		List<Local> result = new ArrayList<>();
-		Iterable<Local> iterable = this.localRepository.findAll();
-		for (Local local : iterable)
-			result.add(local);
-		return result;
+		return (List<Local>) localRepository.findAll();
 	}
 
 	@Transactional
@@ -89,4 +86,10 @@ public class LocalService {
 		locals.sort((local1, local2) -> local1.getName().compareToIgnoreCase(local2.getName()));
 		return locals;
 	}
+
+	public List<Local> findByName(String stringa) {
+		return localRepository.findByNameStartingWithIgnoreCase(stringa);
+	}
+
+
 }

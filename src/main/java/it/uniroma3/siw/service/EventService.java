@@ -62,4 +62,10 @@ public class EventService {
 			eventRepository.save(event);
 		}
 	}
+
+	public List<Event> findByName(String stringa) {
+		return eventRepository.findByNameStartingWithIgnoreCase(stringa);
+	}
+
+
 }
