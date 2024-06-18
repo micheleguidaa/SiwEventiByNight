@@ -64,8 +64,13 @@
 			const file = event.target.files[0];
 			if (file) {
 				imageContainer.src = URL.createObjectURL(file);
+			} else {
+				// Se nessun file è selezionato, mantieni l'immagine corrente
+				imageContainer.src = "[[${local.urlImage}]]";
 			}
 		}
+
+
 	</script>
 </body>
 
