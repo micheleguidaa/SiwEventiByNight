@@ -24,14 +24,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Il nome è obbligatorio")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Il cognome è obbligatorio")
     private String surname;
 
-    @NotNull
-    @PastOrPresent
+    @NotNull(message = "La data di nascita è obbligatoria")
+    @PastOrPresent(message = "La data di nascita deve essere nel passato o oggi")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
 

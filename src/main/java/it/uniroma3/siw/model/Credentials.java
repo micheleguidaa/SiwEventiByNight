@@ -15,10 +15,10 @@ public class Credentials {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotBlank
-	private String username;
-	@NotBlank
-	private String password;
+    @NotBlank(message = "Il username è obbligatorio")
+    private String username;
+    @NotBlank(message = "La password è obbligatoria")
+    private String password;
 	private String role;
 
 	@OneToOne

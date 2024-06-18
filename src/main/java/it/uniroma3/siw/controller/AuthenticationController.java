@@ -84,7 +84,7 @@ public class AuthenticationController {
 
 	@PostMapping("/register")
 	public String registerUser(@Valid @ModelAttribute("user") User user,
-	                            BindingResult cuocoBindingResult, 
+	                            BindingResult userBindingResult, 
 	                            @Valid @ModelAttribute("credentials") Credentials credentials,
 	                            BindingResult credentialsBindingResult,
 	                            @RequestParam("fileImage") MultipartFile file,
@@ -92,7 +92,7 @@ public class AuthenticationController {
 	                            Model model) {
 	    // se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
 	    this.credentialsValidator.validate(credentials, credentialsBindingResult);
-	    if (!cuocoBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+	    if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
 	        try {
 	        	userService.registerUser(user, credentials, file);
 	        } catch (IOException e) {
