@@ -20,10 +20,10 @@
 
 					<!-- Inizio Elementi visibili per utenti  -->
 					<li class="nav-item">
-						<a class="nav-link" th:if="${role != 'ADMIN'}" href="/locals">Locali</a>
+						<a class="nav-link" th:if="${role != 'ADMIN' &&  role != 'BUSINESS'}" href="/locals">Locali</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:if="${role != 'ADMIN'}" href="/events">Eventi</a>
+						<a class="nav-link" th:if="${role != 'ADMIN' &&  role != 'BUSINESS'}" href="/events">Eventi</a>
 					</li>
 					<!-- Fine Elementi visibili per utenti  -->
 
@@ -47,6 +47,18 @@
 						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/users">Utenti</a>
 					</li>
 					<!-- Fine Elementi visibili per admin -->
+					
+					<!-- Inizio Elementi visibili per proprietario -->
+					<li class="nav-item">
+						<a class="nav-link" th:if="${role == 'BUSINESS'}" href="/business/locals">I Miei Locali</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:if="${role == 'BUSINESS'}" href="/business/events">I Miei Eventi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:if="${role == 'BUSINESS'}" href="/business/reservations">Prenotazioni</a>
+					</li>
+					<!-- Fine Elementi visibili per proprietario -->
 				</ul>
 
 				<!-- Inizio Barra di Ricerca per Cuochi e Utenti Non Registrati -->
@@ -71,8 +83,13 @@
 						<a class="nav-link" role="button" id="userDropdown" data-bs-toggle="dropdown"
 							aria-expanded="false">
 							<!-- Se l'immagine è presente -->
-							<img th:if="${CurrentUser.urlImage}" th:src="@{${CurrentUser.urlImage}}" alt="Account Image"
+							<div>
+							<img th:if="${CurrentUser != null}" th:src="@{${CurrentUser.urlImage}}" alt="Account Image"
 								class="account-icon my-2">
+								
+							<img th:if="${CurrentOwner != null}" th:src="@{${CurrentOwner.urlImage}}" alt="Account Image"
+								class="account-icon my-2">
+								</div>
 						</a>
 						<ul class="dropdown-menu bg-dark" aria-labelledby="userDropdown">
 							<div th:text="${userDetails.username}" class="p-2 ms-2 text-capitalize text-light">Profile</div>

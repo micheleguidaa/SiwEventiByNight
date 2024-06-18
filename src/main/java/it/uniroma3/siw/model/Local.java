@@ -13,58 +13,70 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Local {
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotBlank
-	private String name;
-	@NotBlank
-	private String address;
-	private String urlImage;
-	
-	@OneToMany(mappedBy = "local", cascade = CascadeType.ALL, orphanRemoval = true)  
-	private List<Event> events;
 
+    @NotBlank
+    private String name;
 
-	public Long getId() {
-		return id;
-	}
+    @NotBlank
+    private String address;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String urlImage;
 
-	public String getName() {
-		return name;
-	}
+    @OneToMany(mappedBy = "local", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Event> events;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @ManyToOne
+    private Owner owner;
 
-	public String getAddress() {
-		return address;
-	}
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public List<Event> getEvents() {
-		return events;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getUrlImage() {
-		return urlImage;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
+    public List<Event> getEvents() {
+        return events;
+    }
 
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 }

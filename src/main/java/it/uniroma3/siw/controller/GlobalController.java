@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Owner;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 
@@ -46,8 +47,22 @@ public class GlobalController {
                 && !(authentication instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             Credentials credenziali = credentialsService.getCredentials(userDetails.getUsername());
-            if (credenziali != null) {
+            if (credenziali != null && !credenziali.getRole().equals(Credentials.BUSINESS_ROLE)) {
                 return credenziali.getUser();
+            }
+        }
+        return null;
+    }
+    
+    @ModelAttribute("CurrentOwner")
+    public Owner getOwner() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() 
+                && !(authentication instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            Credentials credenziali = credentialsService.getCredentials(userDetails.getUsername());
+            if (credenziali != null && credenziali.getRole().equals(Credentials.BUSINESS_ROLE)) {
+                return credenziali.getOwner();
             }
         }
         return null;

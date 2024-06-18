@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.model.Credentials;
+import it.uniroma3.siw.model.Owner;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.OwnerService;
 import it.uniroma3.siw.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +35,9 @@ public class AuthenticationController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OwnerService ownerService;
 
 	@Autowired
 	private CredentialsValidator credentialsValidator;
@@ -70,12 +75,12 @@ public class AuthenticationController {
 	}
 
 	@GetMapping("/register")
-	public String formNewCuoco(HttpServletRequest request, Model model) {
+	public String formNewUser(Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 		return "formRegisterUser";
 	}
-
+	
 	@PostMapping("/register")
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult userBindingResult,
 			@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
@@ -89,5 +94,26 @@ public class AuthenticationController {
 		}
 		return "formRegisterUser";
 	}
+	
+	
+	@GetMapping("/registerBusiness")
+	public String formNewOwner(Model model) {
+		model.addAttribute("owner", new Owner());
+		model.addAttribute("credentials", new Credentials());
+		return "Owner/formRegisterOwner";
+	}
+	
+    @PostMapping("/registerBusiness")
+    public String registerOwner(@Valid @ModelAttribute("owner") Owner owner, BindingResult ownerBindingResult,
+            @Valid @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
+            @RequestParam("fileImage") MultipartFile file, Model model) throws IOException {
+        // se owner e credential hanno entrambi contenuti validi, memorizza Owner e Credentials nel DB
+        this.credentialsValidator.validate(credentials, credentialsBindingResult);
+        if (!ownerBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+            ownerService.registerOwner(owner, credentials, file);
+            return "formLogin";
+        }
+        return "Owner/formRegisterOwner";
+    }
 
 }

@@ -10,21 +10,31 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 public class Credentials {
 	public static final String DEFAULT_ROLE = "DEFAULT";
+	public static final String BUSINESS_ROLE = "BUSINESS";
 	public static final String ADMIN_ROLE = "ADMIN";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotBlank(message = "Il username è obbligatorio")
     private String username;
-    @NotBlank(message = "La password è obbligatoria")
     private String password;
 	private String role;
 
 	@OneToOne
 	private User user;
+	
+	@OneToOne
+	private Owner owner;
 
 	
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
 	public String getUsername() {
 		return username;
 	}
