@@ -27,12 +27,12 @@
 						<p class="lead" th:text="'Numero massimo di partecipanti: ' + ${event.nMaxParticipants}">Numero
 							massimo di partecipanti: 200</p>
 						<p class="lead"
-							th:text="'Data e orario di inizio: ' + ${#temporals.format(event.startDateTime, 'dd/MM/yyyy HH:mm')}">
+							th:text="'Data e orario di inizio: ' + ${#temporals.format(event.startDateTime, 'HH:mm d MMMM yyyy')}">
 							Data inizio: 2023-06-20 21:00</p>
 						<p class="lead"
-							th:text="'Data e orario di fine: ' + ${#temporals.format(event.endDateTime, 'dd/MM/yyyy HH:mm')}">
+							th:text="'Data e orario di fine: ' + ${#temporals.format(event.endDateTime, 'HH:mm d MMMM yyyy')}">
 							Data fine: 2023-06-21 02:00</p>
-						<p class="lead" th:text="'Costo: €' + ${event.cost}">Costo: €50</p>
+						<p class="lead" th:text="'Costo: ' + ${event.cost} + '€'">Costo: €50</p>
 					</div>
 
 					<!-- Sezione del bottone di prenotazione prova2-->
