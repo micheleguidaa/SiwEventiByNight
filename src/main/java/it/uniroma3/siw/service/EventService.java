@@ -54,6 +54,7 @@ public class EventService {
 			event.setStartDateTime(eventDetails.getStartDateTime());
 			event.setEndDateTime(eventDetails.getEndDateTime());
 			event.setCost(eventDetails.getCost());
+			event.setLocal(eventDetails.getLocal());
 			event.setnMaxParticipants(eventDetails.getnMaxParticipants());
 			if (!file.isEmpty()) {
 				String fileUrl = fileService.saveFile(file, UPLOADED_FOLDER);

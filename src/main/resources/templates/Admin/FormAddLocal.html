@@ -8,7 +8,7 @@
     <div th:if="${ruolo == 'ADMIN'}">
         <div th:replace="~{fragments/navbar :: navbar}"></div>
     </div>
-    <h2 class="text-center">Aggiungi Nuovo Locale</h2>
+    <h2 class="text-center">Aggiungi Locale</h2>
     <div class="container form-container mt-5 mb-5">
         <form th:action="@{/admin/addLocal}" method="post" enctype="multipart/form-data">
 
