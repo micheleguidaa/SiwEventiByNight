@@ -10,10 +10,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Event {
@@ -22,6 +24,7 @@ public class Event {
     private Long id;
 
     @NotBlank(message = "Il nome è obbligatorio")
+    @Size(min = 2, max = 16, message = "Il nome deve essere compreso tra 2 e 16 caratteri")
     private String name;
 
     @NotBlank(message = "Il tema è obbligatorio")
@@ -51,83 +54,92 @@ public class Event {
     @ManyToOne
     private Local local;
 
-	public Long getId() {
-		return id;
-	}
+    @AssertTrue(message = "L'evento non può finire prima dell'inizio!")
+    public boolean getEndDateTimeAfterStartDateTime() {
+        if (startDateTime != null && endDateTime != null) {
+            return endDateTime.isAfter(startDateTime);
+        }
+        return true; // Non validiamo se una delle date è null
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getTheme() {
-		return theme;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
+    public String getTheme() {
+        return theme;
+    }
 
-	public LocalDateTime getStartDateTime() {
-		return startDateTime;
-	}
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
 
-	public void setStartDateTime(LocalDateTime startDateTime) {
-		this.startDateTime = startDateTime;
-	}
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
 
-	public LocalDateTime getEndDateTime() {
-		return endDateTime;
-	}
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
 
-	public void setEndDateTime(LocalDateTime endDateTime) {
-		this.endDateTime = endDateTime;
-	}
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
 
-	public Long getCost() {
-		return cost;
-	}
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
 
-	public void setCost(Long cost) {
-		this.cost = cost;
-	}
+    public Long getCost() {
+        return cost;
+    }
 
-	public Long getnMaxParticipants() {
-		return nMaxParticipants;
-	}
+    public void setCost(Long cost) {
+        this.cost = cost;
+    }
 
-	public void setnMaxParticipants(Long nMaxParticipants) {
-		this.nMaxParticipants = nMaxParticipants;
-	}
+    public Long getnMaxParticipants() {
+        return nMaxParticipants;
+    }
 
-	public List<Reservation> getReservation() {
-		return reservation;
-	}
+    public void setnMaxParticipants(Long nMaxParticipants) {
+        this.nMaxParticipants = nMaxParticipants;
+    }
 
-	public void setReservation(List<Reservation> reservation) {
-		this.reservation = reservation;
-	}
+    public List<Reservation> getReservation() {
+        return reservation;
+    }
 
-	public String getUrlImage() {
-		return urlImage;
-	}
+    public void setReservation(List<Reservation> reservation) {
+        this.reservation = reservation;
+    }
 
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
+    public String getUrlImage() {
+        return urlImage;
+    }
 
-	public Local getLocal() {
-		return local;
-	}
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
 
-	public void setLocal(Local local) {
-		this.local = local;
-	}
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
+    }
 }

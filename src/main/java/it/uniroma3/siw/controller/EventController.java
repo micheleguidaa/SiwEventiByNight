@@ -52,21 +52,25 @@ public class EventController {
 	// Mostra la pagina per creare un nuovo evento
 	@GetMapping("/admin/add/event")
 	public String addEventForm(Model model) {
-		model.addAttribute("event", new Event());
-		model.addAttribute("locals", localService.findAllSortedByName());
-		return "Admin/FormAddEvent";
+	    model.addAttribute("event", new Event());
+	    model.addAttribute("locals", localService.findAllSortedByName());
+	    return "Admin/FormAddEvent";
 	}
 
 	// Gestisce l'inserimento di un nuovo evento
 	@PostMapping("/admin/add/event")
-	public String addEvent(@Valid @ModelAttribute("event")Event event,BindingResult eventBindingResult,  @RequestParam("fileImage") MultipartFile file) throws IOException {
-		if(!eventBindingResult.hasErrors()) {
-		eventService.saveEvent(event, file);
-		return "redirect:/admin/events";
-		}
+	public String addEvent(@Valid @ModelAttribute("event") Event event,
+	                       BindingResult eventBindingResult,
+	                       @RequestParam("fileImage") MultipartFile file,
+	                       Model model) throws IOException {
+	    if (!eventBindingResult.hasErrors()) {
+	        eventService.saveEvent(event, file);
+	        return "redirect:/admin/events";
+	    }
+	    model.addAttribute("locals", localService.findAllSortedByName());
 	    return "Admin/FormAddEvent";
-
 	}
+
 
 	// Mostra la pagina per modificare un evento esistente
 	@GetMapping("/admin/edit/event/{id}")
