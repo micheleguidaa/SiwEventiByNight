@@ -41,7 +41,7 @@ public class EventController {
 	}
 
 	@GetMapping("/event/{id}")
-	public String getEvent(@PathVariable("id") Long eventId,@ModelAttribute("CurrentUser") User currentUser, Model model) {
+	public String getEvent(@PathVariable("id") Long eventId, @RequestParam(value = "CurrentUser", required = false)  User currentUser, Model model) {
 		model.addAttribute("event", eventService.getEvent(eventId));
 		model.addAttribute("isReserved",(currentUser!=null)&&(reservationService.isUserReservedForEvent(currentUser.getId(),eventId)));
 		return "event";

@@ -11,16 +11,14 @@ import jakarta.validation.Valid;
 public class ReservationService {
 	@Autowired
 	private ReservationRepository reservationRepository;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private EventService eventService;
-	
-	
 
-	public Iterable<Reservation>  findAll() {
+	public Iterable<Reservation> findAll() {
 		return reservationRepository.findAll();
 	}
 
@@ -33,9 +31,9 @@ public class ReservationService {
 	public void deleteById(Long id) {
 		reservationRepository.deleteById(id);
 	}
-	
-    public boolean isUserReservedForEvent(Long userId, Long eventId) {
-        return reservationRepository.existsByUserIdAndEventId(userId, eventId);
-    }
+
+	public boolean isUserReservedForEvent(Long userId, Long eventId) {
+		return reservationRepository.existsByUserIdAndEventId(userId, eventId);
+	}
 
 }
