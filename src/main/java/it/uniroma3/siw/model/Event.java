@@ -3,6 +3,8 @@ package it.uniroma3.siw.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,10 +34,12 @@ public class Event {
 
     @NotNull(message = "La data e ora di inizio è obbligatoria")
     @FutureOrPresent(message = "La data e ora di inizio deve essere nel futuro o presente")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime startDateTime;
 
     @NotNull(message = "La data e ora di fine è obbligatoria")
     @FutureOrPresent(message = "La data e ora di fine deve essere nel futuro o presente")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime endDateTime;
 
     @NotNull(message = "Il costo è obbligatorio")

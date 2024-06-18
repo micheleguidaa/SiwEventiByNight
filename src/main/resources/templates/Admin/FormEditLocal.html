@@ -4,62 +4,69 @@
 <head th:replace="~{fragments/header :: header(title='SiwFood - Modifica Locale')}"></head>
 
 <body>
-    <!-- Include la navbar -->
-        <div th:replace="~{fragments/navbar :: navbar}"></div>
-    </div>
-    <h2 class="text-center">Modifica Locale</h2>
-    <div class="container form-container mt-5 mb-5">
-        <form th:action="@{/admin/edit/local/{id}(id=${local.id})}" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <!-- Colonna Immagine -->
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title mb-0">Immagine del Locale</h5>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="image-container">
-                                <img th:src="${local.urlImage}" class="rounded img" alt="Immagine Locale" id="localImagePreview" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<!-- Include la navbar -->
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+	</div>
+	<div class="container my-5 w-75">
+		<h2 class="text-center  my-5 ">Modifica Locale</h2>
+		<div class="container form-container mt-5 mb-5">
+			<form th:action="@{/admin/edit/local/{id}(id=${local.id})}" method="post" enctype="multipart/form-data">
+				<div class="row">
+					<!-- Colonna Immagine -->
+					<div class="col-md-4">
+						<div class="card mb-4">
+							<div class="card-header">
+								<h5 class="card-title mb-0">Immagine del Locale</h5>
+							</div>
+							<div class="card-body p-0">
+								<div class="image-container">
+									<img th:src="${local.urlImage}" class="rounded img" alt="Immagine Locale"
+										id="localImagePreview" />
+								</div>
+							</div>
+						</div>
+					</div>
 
-                <!-- Colonna Inserimento Dati -->
-                <div class="col-md-8">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="name" name="name" th:value="${local.name}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Indirizzo</label>
-                        <input type="text" class="form-control" id="address" name="address" th:value="${local.address}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fileImage" class="form-label">Carica nuova immagine del locale (opzionale)</label>
-                        <input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*" onchange="loadFile(event)">
-                        <div class="form-text text-light">Puoi caricare una nuova immagine del locale.</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
-                </div>
-            </div>
-        </form>
-    </div>
+					<!-- Colonna Inserimento Dati -->
+					<div class="col-md-8">
+						<div class="mb-3">
+							<label for="name" class="form-label">Nome</label>
+							<input type="text" class="form-control" id="name" name="name" th:value="${local.name}"
+								required>
+						</div>
+						<div class="mb-3">
+							<label for="address" class="form-label">Indirizzo</label>
+							<input type="text" class="form-control" id="address" name="address"
+								th:value="${local.address}" required>
+						</div>
+						<div class="mb-3">
+							<label for="fileImage" class="form-label">Carica nuova immagine del locale
+								(opzionale)</label>
+							<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
+								onchange="loadFile(event)">
+							<div class="form-text text-light">Puoi caricare una nuova immagine del locale.</div>
+						</div>
+						<button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
-    <!-- Include il footer -->
-    <div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}"></div>
+	<!-- Include il footer -->
+	<div th:if="${ruolo == 'ADMIN'}" th:replace="~{fragments/footer :: footer}"></div>
 
-    <!-- Script per la preview dell'immagine -->
-    <script>
-        function loadFile(event) {
-            var imageContainer = document.getElementById('localImagePreview');
-            imageContainer.src = "";
-            const file = event.target.files[0];
-            if (file) {
-                imageContainer.src = URL.createObjectURL(file);
-            }
-        }
-    </script>
+	<!-- Script per la preview dell'immagine -->
+	<script>
+		function loadFile(event) {
+			var imageContainer = document.getElementById('localImagePreview');
+			imageContainer.src = "";
+			const file = event.target.files[0];
+			if (file) {
+				imageContainer.src = URL.createObjectURL(file);
+			}
+		}
+	</script>
 </body>
 
 </html>
