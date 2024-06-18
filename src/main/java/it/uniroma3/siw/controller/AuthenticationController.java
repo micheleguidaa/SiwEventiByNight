@@ -85,7 +85,7 @@ public class AuthenticationController {
 		this.credentialsValidator.validate(credentials, credentialsBindingResult);
 		if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
 			userService.registerUser(user, credentials, file);
-			return "login";
+			return "formLogin";
 		}
 		return "formRegisterUser";
 	}

@@ -35,27 +35,41 @@
 						<p class="lead" th:text="'Costo: ' + ${event.cost} + '€'">Costo: €50</p>
 					</div>
 
-					<!-- Sezione del bottone di prenotazione prova2-->
 					<div class="d-flex justify-content-center">
 						<div th:if="${CurrentUser != null}">
 							<!-- Form Prenotazione -->
-							<form th:action="@{/addReservation}" method="post"> 
-								<input type="hidden" th:name="eventId" th:value="${event.id}" />
-								<input type="hidden" id="userId" name="userId" th:value="${CurrentUser.id}" />
-								<button type="submit" class="btn btn-primary px-5">Prenota</button>
-							</form>
-						</div>
-						<div th:if="${CurrentUser == null}">
-							<div class="alert alert-info text-center px-4 col-12" role="alert" >
-								<p class="m-0"><a href="/login" class="alert-link">Accedi</a> o <a href="/register"
-										class="alert-link">Registrati</a> per Prenotarti all'Evento!</p>
+							<div th:if="${isReserved}">
+								<form th:action="@{/newAction}" method="post">
+									<input type="hidden" th:name="eventId" th:value="${event.id}" />
+									<input type="hidden" id="userId" name="userId" th:value="${CurrentUser.id}" />
+									<!-- Rimuovi il bottone e aggiungi l'alert -->
+									<div class="alert alert-success" role="alert">
+										Sei già prenotato!
+										<a href="/userReservations" class="text-success">Vai alle tue prenotazioni</a>.
+									</div>
+								</form>
+
+							</div>
+							<div th:if="${!isReserved}">
+								<form th:action="@{/addReservation}" method="post">
+									<input type="hidden" th:name="eventId" th:value="${event.id}" />
+									<input type="hidden" id="userId" name="userId" th:value="${CurrentUser.id}" />
+									<button type="submit" class="btn btn-primary px-5">Prenota</button>
+								</form>
 							</div>
 						</div>
 					</div>
+					<div th:if="${CurrentUser == null}">
+						<div class="alert alert-info text-center px-4 col-12" role="alert">
+							<p class="m-0"><a href="/login" class="alert-link">Accedi</a> o <a href="/register"
+									class="alert-link">Registrati</a> per Prenotarti all'Evento!</p>
+						</div>
+					</div>
 				</div>
-
 			</div>
+
 		</div>
+	</div>
 	</div>
 	<div th:replace="~{fragments/footer :: footer}"></div>
 </body>

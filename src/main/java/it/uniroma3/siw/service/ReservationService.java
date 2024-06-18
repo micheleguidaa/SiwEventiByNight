@@ -34,5 +34,8 @@ public class ReservationService {
 		reservationRepository.deleteById(id);
 	}
 	
+    public boolean isUserReservedForEvent(Long userId, Long eventId) {
+        return reservationRepository.existsByUserIdAndEventId(userId, eventId);
+    }
 
 }
