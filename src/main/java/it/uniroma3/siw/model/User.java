@@ -30,7 +30,6 @@ public class User {
     @NotBlank(message = "Il cognome è obbligatorio")
     private String surname;
 
-    @NotNull(message = "La data di nascita è obbligatoria")
     @PastOrPresent(message = "La data di nascita deve essere nel passato o oggi")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
