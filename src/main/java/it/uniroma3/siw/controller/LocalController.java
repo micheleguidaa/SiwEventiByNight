@@ -75,4 +75,11 @@ public class LocalController {
 		localService.updateLocal(id, local, file);
 		return "redirect:/admin/locals";
 	}
+	
+	// Mostra la pagina con l'elenco di tutti i locali per l'amministratore
+	@GetMapping("/business/locals")
+	public String showBusinessLocals(Model model) {
+		model.addAttribute("locals", localService.getAllLocals());
+		return "Owner/indexLocalsOwner";
+	}
 }

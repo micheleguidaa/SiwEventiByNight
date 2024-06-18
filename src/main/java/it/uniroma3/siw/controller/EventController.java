@@ -126,4 +126,13 @@ public class EventController {
 		eventService.deleteById(id);
 		return "redirect:/admin/events";
 	}
+	
+	
+	// Mostra la pagina con l'elenco di tutti gli eventi per l'amministratore
+	@GetMapping("/business/events")
+	public String showOwnerEvents(Model model) {
+		model.addAttribute("events", eventService.findAll());
+		return "Owner/indexEventsOwner";
+	}
+
 }
