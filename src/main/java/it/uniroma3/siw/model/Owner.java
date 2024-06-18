@@ -30,7 +30,7 @@ public class Owner {
     private LocalDate dateOfBirth;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Local> properties;
+    private List<Local> locals;
     
     @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private Credentials credentials;
@@ -87,11 +87,11 @@ public class Owner {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public List<Local> getProperties() {
-        return properties;
+    public List<Local> getLocals() {
+        return locals;
     }
 
-    public void setProperties(List<Local> properties) {
-        this.properties = properties;
+    public void setLocals(List<Local> properties) {
+        this.locals = properties;
     }
 }
