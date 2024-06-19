@@ -14,7 +14,7 @@ public class Reservation {
     private Long id;
 	@ManyToOne
 	private User user;
-	@OneToOne
+	@ManyToOne
 	private Event event;
 
 	public Long getId() {

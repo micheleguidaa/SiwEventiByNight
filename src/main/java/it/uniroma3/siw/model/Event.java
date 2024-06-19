@@ -53,7 +53,7 @@ public class Event {
     private String urlImage;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    private List<Reservation> reservation;
+    private List<Reservation> reservations;
 
     @ManyToOne
     private Local local;
@@ -123,12 +123,12 @@ public class Event {
         this.nMaxParticipants = nMaxParticipants;
     }
 
-    public List<Reservation> getReservation() {
-        return reservation;
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservation(List<Reservation> reservation) {
-        this.reservation = reservation;
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public String getUrlImage() {

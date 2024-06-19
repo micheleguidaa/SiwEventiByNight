@@ -46,5 +46,12 @@ public class ReservationController {
 		return "Admin/indexReservationsAdmin";
 	}
 	
+	// Mostra la pagina con l'elenco di tutti gli users per l'amministratore
+	@GetMapping("/business/reservations")
+	public String showReservationsOwner(Model model) {
+		model.addAttribute("reservations", reservationService.findAll());
+		return "Owner/indexReservationsOwner";
+	}
+	
 
 }
