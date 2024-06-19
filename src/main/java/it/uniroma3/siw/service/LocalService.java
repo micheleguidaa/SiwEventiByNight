@@ -22,6 +22,9 @@ public class LocalService {
 
 	@Autowired
 	private FileService fileService;
+	
+	@Autowired
+	private OwnerService ownerService;
 
 	private static final String UPLOADED_FOLDER = "uploads/locals/";
 	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoLocal.jpeg";
@@ -33,13 +36,14 @@ public class LocalService {
 	}
 
 	@Transactional
-	public Local saveLocal(Local local, MultipartFile file) throws IOException {
+	public Local saveLocal(Local local,Long ownerId, MultipartFile file) throws IOException {
 		if (file.isEmpty()) {
 			local.setUrlImage(DEFAULT_IMAGE);
 		} else {
 			String fileUrl = fileService.saveFile(file, UPLOADED_FOLDER);
 			local.setUrlImage(fileUrl);
 		}
+		local.setOwner(ownerService.getOwner(ownerId));
 		return this.localRepository.save(local);
 	}
 

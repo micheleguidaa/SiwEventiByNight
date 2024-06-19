@@ -134,5 +134,28 @@ public class EventController {
 		model.addAttribute("events", eventService.findAll());
 		return "Owner/indexEventsOwner";
 	}
+	
+	// Mostra la pagina per creare un nuovo evento
+		@GetMapping("/business/add/event")
+		public String addEventFormBusiness(Model model) {
+		    model.addAttribute("event", new Event());
+		    model.addAttribute("locals", localService.findAllSortedByName());
+		    return "Owner/FormAddEventOwner";
+		}
+
+		// Gestisce l'inserimento di un nuovo evento
+		@PostMapping("/business/add/event")
+		public String addEventBusiness(@Valid @ModelAttribute("event") Event event,
+		                       BindingResult eventBindingResult,
+		                       @RequestParam("fileImage") MultipartFile file,
+		                       Model model) throws IOException {
+		    if (!eventBindingResult.hasErrors()) {
+		        eventService.saveEvent(event, file);
+		        return "redirect:/business/events";
+		    }
+		    model.addAttribute("locals", localService.findAllSortedByName());
+		    return "Owner/FormAddEventOwner";
+		}
+
 
 }

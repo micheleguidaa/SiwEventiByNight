@@ -48,6 +48,10 @@ public class OwnerService {
 		return this.ownerRepository.save(owner);
 	}
 
+	public Owner getOwner(Long ownerId) {
+		return ownerRepository.findById(ownerId).orElse(null);
+	}
+
 
 
 }

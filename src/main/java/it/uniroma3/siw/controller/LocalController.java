@@ -42,16 +42,17 @@ public class LocalController {
 	}
 	
 	// Mostra la pagina per aggiungere un nuovo locale
-	@GetMapping("/admin/addLocal")
+	@GetMapping("/admin/add/local")
 	public String addLocalForm(Model model) {
 		model.addAttribute("local", new Local());
 		return "Admin/FormAddLocal";
 	}
 	
+	///****** DA FARE ************/////
 	// Gestisce l'inserimento di un nuovo locale
-	@PostMapping("/admin/addLocal")
-	public String addLocal(Local local, @RequestParam("fileImage") MultipartFile file) throws IOException {
-		localService.saveLocal(local, file);
+	@PostMapping("/admin/add/local")
+	public String addLocal(Local local, @RequestParam("fileImage") MultipartFile file,@RequestParam("ownerId") Long ownerId) throws IOException {
+		localService.saveLocal(local,ownerId, file);
 		return "redirect:/admin/locals";
 	}
 
@@ -82,4 +83,41 @@ public class LocalController {
 		model.addAttribute("locals", localService.getAllLocals());
 		return "Owner/indexLocalsOwner";
 	}
+	
+	// Mostra la pagina per aggiungere un nuovo locale
+	@GetMapping("/business/add/local")
+	public String addLocalFormOwner(Model model) {
+		model.addAttribute("local", new Local());
+		return "Owner/FormAddLocalOwner";
+	}
+	
+	// Gestisce l'inserimento di un nuovo locale
+	@PostMapping("/business/add/local")
+	public String addLocalOwner(Local local, @RequestParam("fileImage") MultipartFile file,@RequestParam("ownerId") Long ownerId) throws IOException {
+		localService.saveLocal(local,ownerId,file);
+		return "redirect:/business/locals";
+	}
+	
+	// Elimina un locale
+	@PostMapping("/business/delete/local/{id}")
+	public String deleteLocalOener(@PathVariable("id") Long id) {
+		localService.deleteById(id);
+		return "redirect:/business/locals";
+	}
+	
+	// Mostra la pagina per modificare un locale esistente
+	@GetMapping("/business/edit/local/{id}")
+	public String editLocalFormOwner(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("local", localService.getLocal(id));
+		return "Owner/FormEditLocalOwner";
+	}
+	
+	// Gestisce la modifica di un locale esistente
+	@PostMapping("/business/edit/local/{id}")
+	public String editLocalOwner(@PathVariable("id") Long id, Local local, @RequestParam("fileImage") MultipartFile file) throws IOException {
+		localService.updateLocal(id, local, file);
+		return "redirect:/business/locals";
+	}
+	
+	
 }

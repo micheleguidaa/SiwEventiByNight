@@ -9,7 +9,7 @@
 	<div class="container my-5 w-75">
 		<h2 class="text-center my-3">Aggiungi Locale</h2>
 		<div class="container form-container mt-5 mb-5">
-			<form th:action="@{/admin/add/ocal}" method="post" enctype="multipart/form-data">
+			<form th:action="@{/business/add/local}" method="post" enctype="multipart/form-data">
 
 				<div class="row">
 					<!-- Colonna Immagine -->
@@ -42,6 +42,8 @@
 							<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
 								onchange="loadFile(event)">
 							<div class="form-text text-light">Puoi caricare un'immagine del locale.</div>
+							<input type="hidden" id="ownerId" name="ownerId" th:value="${CurrentOwner.id}" />
+
 						</div>
 						<button type="submit" class="btn btn-primary w-100">Salva Locale</button>
 					</div>

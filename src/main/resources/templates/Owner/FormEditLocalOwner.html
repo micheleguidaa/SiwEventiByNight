@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<head th:replace="~{fragments/header :: header(title='SiwFood - Inserimento Locale')}"></head>
+<head th:replace="~{fragments/header :: header(title='SiwFood - Modifica Locale')}"></head>
 
 <body>
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
+	</div>
 	<div class="container my-5 w-75">
-		<h2 class="text-center my-3">Aggiungi Locale</h2>
+		<h2 class="text-center  my-5 ">Modifica Locale</h2>
 		<div class="container form-container mt-5 mb-5">
-			<form th:action="@{/admin/add/ocal}" method="post" enctype="multipart/form-data">
-
+			<form th:action="@{/business/edit/local/{id}(id=${local.id})}" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<!-- Colonna Immagine -->
 					<div class="col-md-4">
@@ -20,8 +20,8 @@
 							</div>
 							<div class="card-body p-0">
 								<div class="image-container">
-									<img src="/images/default/senzaFotoLocal.jpeg" class="rounded img"
-										alt="Immagine Locale" id="localImagePreview" />
+									<img th:src="${local.urlImage}" class="rounded img" alt="Immagine Locale"
+										id="localImagePreview" />
 								</div>
 							</div>
 						</div>
@@ -31,25 +31,27 @@
 					<div class="col-md-8">
 						<div class="mb-3">
 							<label for="name" class="form-label">Nome</label>
-							<input type="text" class="form-control" id="name" name="name" required>
+							<input type="text" class="form-control" id="name" name="name" th:value="${local.name}"
+								required>
 						</div>
 						<div class="mb-3">
 							<label for="address" class="form-label">Indirizzo</label>
-							<input type="text" class="form-control" id="address" name="address" required>
+							<input type="text" class="form-control" id="address" name="address"
+								th:value="${local.address}" required>
 						</div>
 						<div class="mb-3">
-							<label for="fileImage" class="form-label">Carica immagine del locale (opzionale)</label>
+							<label for="fileImage" class="form-label">Carica nuova immagine del locale
+								(opzionale)</label>
 							<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
 								onchange="loadFile(event)">
-							<div class="form-text text-light">Puoi caricare un'immagine del locale.</div>
+							<div class="form-text text-light">Puoi caricare una nuova immagine del locale.</div>
 						</div>
-						<button type="submit" class="btn btn-primary w-100">Salva Locale</button>
+						<button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-
 
 	<!-- Include il footer -->
 	<div th:replace="~{fragments/footer :: footer}"></div>
@@ -63,9 +65,12 @@
 			if (file) {
 				imageContainer.src = URL.createObjectURL(file);
 			} else {
-				imageContainer.src = "/images/default/senzaFotoLocal.jpeg"
+				// Se nessun file è selezionato, mantieni l'immagine corrente
+				imageContainer.src = "[[${local.urlImage}]]";
 			}
 		}
+
+
 	</script>
 </body>
 
