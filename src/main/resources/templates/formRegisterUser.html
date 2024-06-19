@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<head th:replace="~{fragments/header :: header(title='SiwFood - Registrazione')}"></head>
+<head th:replace="~{fragments/header :: header(title='SiwEventi - Registrazione')}"></head>
 
 <body>
 	<!-- Include la navbar -->
@@ -13,7 +13,7 @@
 			<h2 class="text-center mb-4">Registrazione</h2>
 		</div>
 
-		<form th:action="@{/register}" method="post" enctype="multipart/form-data">
+		<form th:action="@{/register}" method="post" enctype="multipart/form-data" onsubmit="return validatePasswords()">
 			<div class=" d-flex justify-content-center">
 				<div th:if="${#fields.hasErrors('credentials')}" class="alert alert-danger text-center w-50"
 					role="alert">
@@ -45,7 +45,7 @@
 								<label for="name" class="form-label">Nome</label>
 								<input type="text" class="form-control" id="name" name="name" required>
 								<div th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}"
-									class="text-danger" ></div>
+									class="text-danger"></div>
 							</div>
 							<div class="mb-3">
 								<label for="surname" class="form-label">Cognome</label>
@@ -91,7 +91,7 @@
 							<div class="mb-3">
 								<label for="confirmPassword" class="form-label">Conferma Password</label>
 								<div class="input-group">
-									<input type="password" class="form-control" id="confirmPassword"
+									<input type="password" class="form-control" id="confirmPassword" label=""
 										name="confirmPassword" required>
 									<button type="button" class="btn btn-outline-secondary btn"
 										id="toggleConfirmPassword">
@@ -99,6 +99,8 @@
 									</button>
 								</div>
 							</div>
+							<div id="passwordError" class="text-danger mb-2" style="display: none;">Le password non
+								corrispondono.</div>
 						</div>
 					</div>
 					<!-- Pulsante di Conferma -->
@@ -147,6 +149,17 @@
 				this.innerHTML = '<i class="bi bi-eye"></i>';
 			}
 		});
+
+		function validatePasswords() {
+			var password = document.getElementById('password').value;
+			var confirmPassword = document.getElementById('confirmPassword').value;
+			if (password !== confirmPassword) {
+				document.getElementById('passwordError').style.display = 'block';
+				return false;
+			}
+			document.getElementById('passwordError').style.display = 'none';
+			return true;
+		}
 	</script>
 
 </body>
