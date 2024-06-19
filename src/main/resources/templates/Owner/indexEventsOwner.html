@@ -12,12 +12,15 @@
             <a class="btn btn-primary btn-lg" href="/business/add/event" role="button">Aggiungi Nuovo Evento</a>
         </div>
         <div th:if="${CurrentOwner.locals == null || CurrentOwner.locals.isEmpty()}" class="alert alert-info text-center">
-           	Non hai ancora nessun locale, potrai aggiungere eventi dopo aver inserito un  
+            Non hai ancora nessun locale, potrai aggiungere eventi dopo aver inserito un  
             <a href="/business/add/local" class="alert-link">Nuovo locale</a>.
         </div>
         <div th:each="local : ${CurrentOwner.locals}">
             <h2 class="text-center mb-4" th:text="${local.name}">Nome Locale</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div th:if="${local.events == null || local.events.isEmpty()}" class="alert alert-info text-center">
+                Non vi sono ancora eventi per questo locale.
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${local.events != null && !local.events.isEmpty()}">
                 <div class="col" th:each="event : ${local.events}">
                     <div class="card">
                         <div class="image-container overflow-hidden">

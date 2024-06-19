@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="it">
 
-<head th:replace="~{fragments/header :: header(title='SiwFood - Creazione Evento')}"></head>
+<head th:replace="~{fragments/header :: header(title='SiwFood - Modifica Evento')}"></head>
 
 <body>
 	<!-- Include la navbar -->
 	<div th:replace="~{fragments/navbar :: navbar}"></div>
-	<div class="container my-5 w-75">
-		<h2 class="text-center  my-5 ">Aggiungi Evento</h2>
+	<div class="container mb-5 mt-2 w-75">
+		<h2 class="text-center my-5">Modifica Evento</h2>
 		<div class="container form-container mt-5 mb-5">
-			<form id="eventForm" th:action="@{/business/add/event}" method="post" enctype="multipart/form-data"
+			<form th:action="@{/business/edit/event/{id}(id=${event.id})}" method="post" enctype="multipart/form-data"
 				th:object="${event}">
 				<div class="row">
-					<!-- Colonna Immagine -->
+					<!-- Colonna Immagine e Caricamento -->
 					<div class="col-md-4">
 						<div class="card mb-4">
 							<div class="card-header">
@@ -20,8 +20,8 @@
 							</div>
 							<div class="card-body p-0">
 								<div class="image-container">
-									<img src="/images/default/senzaFotoEvent.jpeg" class="rounded img"
-										alt="Immagine Evento" id="eventImagePreview" />
+									<img th:src="${event.urlImage}" class="rounded img" alt="Immagine Evento"
+										id="eventImagePreview" />
 								</div>
 							</div>
 						</div>
@@ -43,17 +43,16 @@
 						<div class="mb-3">
 							<label for="startDateTime" class="form-label">Data e Ora Inizio</label>
 							<input type="datetime-local" class="form-control" id="startDateTime" name="startDateTime"
-								th:field="*{startDateTime}" required>
+								th:value="${event.startDateTime.toString()}" required>
 							<div class="text-danger" th:if="${#fields.hasErrors('startDateTime')}"
 								th:errors="*{startDateTime}"></div>
 						</div>
 						<div class="mb-3">
 							<label for="endDateTime" class="form-label">Data e Ora Fine</label>
 							<input type="datetime-local" class="form-control" id="endDateTime" name="endDateTime"
-								th:field="*{endDateTime}" required>
+								th:value="${event.endDateTime.toString()}" required>
 							<div class="text-danger" th:if="${#fields.hasErrors('endDateTime')}"
-								th:errors="*{endDateTime}">
-							</div>
+								th:errors="*{endDateTime}"></div>
 							<div class="text-danger" th:if="${#fields.hasErrors('endDateTimeAfterStartDateTime')}"
 								th:errors="*{endDateTimeAfterStartDateTime}"></div>
 						</div>
@@ -76,23 +75,24 @@
 						<div class="mb-3">
 							<label for="local" class="form-label">Locale</label>
 							<select class="form-select" id="local" name="local" th:field="*{local}" required>
-								<option th:each="local : ${CurrentOwner.locals}" th:value="${local.id}" th:text="${local.name}">
-								</option>
+								<option th:each="local : ${CurrentOwner.locals}" th:value="${local.id}" th:text="${local.name}"
+									th:selected="${local.id == event.local.id}">Seleziona un locale</option>
 							</select>
 							<div class="text-danger" th:if="${#fields.hasErrors('local')}" th:errors="*{local}"></div>
 						</div>
 						<div class="mb-3">
-							<label for="fileImage" class="form-label">Carica immagine dell'evento (opzionale)</label>
+							<label for="fileImage" class="form-label">Carica nuova immagine dell'evento
+								(opzionale)</label>
 							<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
 								onchange="loadFile(event)">
-							<div class="form-text text-light">Puoi caricare un'immagine per l'evento.</div>
+							<div class="form-text text-light">Puoi caricare una nuova immagine per l'evento.</div>
 						</div>
 					</div>
 				</div>
 				<!-- Bottoni -->
 				<div class="row">
 					<div class="col-md-8 offset-md-4">
-						<button type="submit" class="btn btn-primary w-100">Salva Evento</button>
+						<button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
 					</div>
 				</div>
 			</form>
@@ -102,19 +102,19 @@
 	<!-- Include il footer -->
 	<div th:replace="~{fragments/footer :: footer}"></div>
 
-	<!-- Script per la preview dell'immagine -->
+	<!-- Script per la preview dell'immagine e rimozione -->
 	<script>
 		function loadFile(event) {
 			var imageContainer = document.getElementById('eventImagePreview');
-			imageContainer.src = "";
 			const file = event.target.files[0];
 			if (file) {
 				imageContainer.src = URL.createObjectURL(file);
 			} else {
-				imageContainer.src = "/images/default/senzaFotoEvent.jpeg"
+				// Se nessun file è selezionato, mantieni l'immagine corrente
+				imageContainer.src = "[[${event.urlImage}]]";
 			}
-		
 		}
+
 	</script>
 </body>
 
