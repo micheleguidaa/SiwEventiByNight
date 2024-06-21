@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head th:replace="~{fragments/header :: header(title='SiwEventi - Homepage')}"></head>
 
 <body>
@@ -13,8 +14,7 @@
 					<div class="text-center">
 						<div class="text-center mt-5">
 							<img src="/images/HomePageSiwEventi.jpeg" class="rounded-4 img-fluid mb-4" alt="Logo SiwEventi">
-
-							<h1 class="display-4">Benvenuti su SiwEventi2!</h1>
+							<h1 class="display-5">Benvenuti su Siw Eventi!</h1>
 							<p class="lead mb-4">
 								Esplora i migliori eventi notturni della tua città! Dalle serate in discoteca agli spettacoli dal vivo, trova l'evento perfetto per le tue serate.
 							</p>
@@ -22,11 +22,15 @@
 					</div>
 				</div>
 				<div class="text-center mt-4">
-					<p class="lead">
+					<a class="btn btn-primary btn-lg me-3" href="/events" role="button">
+						<i class="bi bi-calendar-event"></i> Scopri gli Eventi
+					</a>
+					<a class="btn btn-secondary btn-lg" href="/locals" role="button">
+						<i class="bi bi-geo-alt"></i> I Locali Migliori
+					</a>
+					<p class="lead mt-3">
 						Unisciti alla nostra community di appassionati della vita notturna, condividi le tue esperienze e non perdere le ultime novità sugli eventi più esclusivi!
 					</p>
-					<a class="btn btn-primary btn-lg" href="/events" role="button">Scopri gli Eventi</a>
-					<a class="btn btn-secondary btn-lg" href="/locals" role="button">I Locali Migliori</a>
 				</div>
 			</div>
 		</div>
@@ -35,5 +39,8 @@
 	<!-- Include il footer -->
 	<div th:replace="~{fragments/footer :: footer}"></div>
 
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 </body>
+
 </html>

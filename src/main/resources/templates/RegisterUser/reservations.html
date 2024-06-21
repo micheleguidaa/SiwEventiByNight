@@ -4,50 +4,42 @@
 <head th:replace="~{fragments/header :: header(title='SiwFood - Eventi')}"></head>
 
 <body>
-	<!-- Include la navbar -->
-	<div th:replace="~{fragments/navbar :: navbar}"></div>
+    <!-- Include la navbar -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-	<div class="container my-5">
-		<h1 class="my-4 text-center">Prenotazioni</h1>
-		<div th:if="${CurrentUser.reservations==null || CurrentUser.reservations.isEmpty()}"
-			class="alert alert-info text-center">
-			Non ci sono prenotazioni nel sistema
-		</div>
-		<div class="table-responsive">
-			<table class="table table-striped table-dark table-sm mx-auto">
-				<tbody>
-					<tr th:each="reservation : ${CurrentUser.reservations}">
-						<td class="align-middle">
-							<div class="d-flex align-items-center">
-								<img th:src="${reservation.event.urlImage}" alt="Immagine Evento"
-									class="img-fluid rounded img-sm">
-							</div>
-						</td>
-						<td class="align-middle">
-							<div class="d-flex flex-column align-items-start ">
-								<h6 class="mb-1 text-center" th:text="${reservation.event.name}">Nome Evento</h6>
-								<p class="mb-1"
-									th:text="'Data Evento: ' + ${#temporals.format(reservation.event.startDateTime, 'dd MMMM yyyy')}">
-									Data
-									e Ora Prenotazione</p>
-							</div>
-						</td>
-						<td class="align-middle">
-							<div class="d-flex align-items-center justify-content-center">
-								<form th:action="@{'/delete/reservation/' + ${reservation.id}}" method="post">
-									<button type="submit" class="btn btn-danger btn-lg">
-										<img src="/images/trash.svg" class="icon-invert" alt="Remove">
-									</button>
-								</form>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<!-- Include il footer -->
-	<div th:replace="~{fragments/footer :: footer}"></div>
+    <div class="container my-5">
+        <h2 class="mb-4"> le mie prenotazioni:</h2>
+        <div th:if="${CurrentUser.reservations == null || CurrentUser.reservations.isEmpty()}" class="alert alert-info text-center">
+            Non ci sono prenotazioni nel sistema
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-dark table-sm mx-auto">
+                <tbody>
+                    <tr th:each="reservation : ${CurrentUser.reservations}">
+                        <td class="align-middle text-center">
+                            <img th:src="${reservation.event.urlImage}" alt="Immagine Evento" class="img-fluid rounded" style="max-width: 100px;">
+                        </td>
+                        <td class="align-middle text-center">
+                            <h5 th:text="${reservation.event.name}">Nome Evento</h5>
+                            <h6 th:text="'Data Evento: ' + ${#temporals.format(reservation.event.startDateTime, 'dd MMMM yyyy')}"></h6>
+                        </td>
+                        <td class="align-middle text-center">
+                            <form th:action="@{'/delete/reservation/' + ${reservation.id}}" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Cancella
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Include il footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 </body>
 
 </html>
