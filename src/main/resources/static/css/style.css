@@ -12,7 +12,6 @@
 	--card-box-shadow: rgba(255, 255, 255, 0.1);
 }
 
-/* Global Styles */
 body {
 	padding-top: 3rem;
 	background-color: var(--light-color);
@@ -50,6 +49,21 @@ a {
 	background: linear-gradient(90deg, rgba(27, 27, 27, 0.7), rgba(75, 19, 89, 0.7));
 }
 
+/* Global Styles */
+.jumbotron {
+    background-image: url('../images/sfondo.jpeg');
+    background-size: cover; /* This ensures the image covers the entire background */
+    background-repeat: no-repeat; /* This ensures the image does not repeat */
+    background-attachment: fixed; /* This makes the background image fixed during scroll */
+}
+
+/* Stili specifici per schermi più piccoli (tablet e telefono) */
+@media (max-width: 900px) {
+    .jumbotron {
+        background-image: none;
+        background-color: var(--light-color); /* Sostituisci con il colore di sfondo desiderato */
+    }
+}
 
 /* Button Styles */
 .btn-primary {
