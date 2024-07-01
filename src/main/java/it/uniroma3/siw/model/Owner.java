@@ -3,6 +3,8 @@ package it.uniroma3.siw.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,11 +12,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PastOrPresent;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+
+
+
 
 @Entity
 public class Owner {
@@ -22,17 +25,21 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
- 
+    @NotBlank(message = "Il nome è obbligatorio")
     private String name;
-
+    @NotBlank(message = "Il cognome è obbligatorio")
     private String surname;
-
+    @NotBlank(message = "L'email è obbligatorio")
+    private String email;
+    
+    @Past(message = "La data di nascita deve essere nel passato")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Local> locals;
     
-    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL)
     private Credentials credentials;
     
     public Credentials getCredentials() {
