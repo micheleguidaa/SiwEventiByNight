@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import it.uniroma3.siw.model.Event;
 
 public interface EventRepository extends CrudRepository<Event, Long>{
-
 	List<Event> findByNameStartingWithIgnoreCase(String name);
 	
 }

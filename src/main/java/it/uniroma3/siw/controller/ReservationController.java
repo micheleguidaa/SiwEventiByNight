@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.uniroma3.siw.model.Reservation;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.model.Event;
 import it.uniroma3.siw.model.Owner;
 import it.uniroma3.siw.service.ReservationService;
 import jakarta.validation.Valid;
@@ -28,9 +28,9 @@ public class ReservationController {
         return "RegisterUser/reservations";
     }
 
-    // Mostra la pagina con l'elenco di tutti gli users per l'amministratore
+    // Mostra la pagina con l'elenco di tutte le prenotazioni 
     @GetMapping("/admin/reservations")
-    public String showAdminUsers(Model model) {
+    public String showReservationsForAdmin(Model model) {
         model.addAttribute("reservations", reservationService.findAll());
         return "Admin/indexReservationsAdmin";
     }
@@ -42,11 +42,11 @@ public class ReservationController {
         model.addAttribute("hasReservations", hasReservations);
         return "Owner/indexReservationsOwner";
     }
-
+    
+    /* DA RIVEDERE */
     @PostMapping("/addReservation")
-    public String addReservation(@Valid @ModelAttribute("reservation") Reservation reservation,
-            @RequestParam("eventId") Long eventId, @RequestParam("userId") Long userId, Model model) {
-        reservationService.registerReservation(reservation, userId, eventId);
+    public String addReservation(@Valid @RequestParam("event") Event event, @RequestParam("CurrentUser") User user, Model model) {
+        reservationService.registerReservation(user, event);
         return "redirect:/reservations";
     }
 
