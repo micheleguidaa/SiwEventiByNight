@@ -4,7 +4,7 @@
 <head th:replace="~{fragments/header :: header(title='SiwFood - Login')}"></head>
 
 <body>
-	<div class="container mt-5">
+	<div class="container mt-3">
 		<div class="row justify-content-center">
 			<div class="col-md-6 col-lg-4">
 				<div class="form-container shadow-sm">
@@ -16,34 +16,30 @@
 							</div>
 							<div class="mb-3">
 								<label for="username" class="form-label">Username</label>
-								<input type="text" class="form-control" id="username" name="username" required>
+								<input type="text" class="form-control" id="username" name="username" placeholder="Inserisci il tuo username" required>
 							</div>
-							<div class="mb-3"></div>
-							<label for="password" class="form-label">Password</label>
-							<div class="input-group mb-3">
-								<input type="password" class="form-control" id="password" name="password" required>
-								<button type="button" class="btn btn-outline-secondary" id="togglePassword">
-									<i class="bi bi-eye"></i>
-								</button>
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label>
+								<div class="input-group mb-3">
+									<input type="password" class="form-control" id="password" name="password" placeholder="Inserisci la tua password" required>
+									<button type="button" class="btn btn-outline-secondary" id="togglePassword">
+										<i class="bi bi-eye"></i>
+									</button>
+								</div>
 							</div>
+							<button type="submit" class="btn btn-secondary w-100">Login</button>
+							<hr>
+							<div class="text-center">
+								<a href="/register" class="btn btn-primary w-100 mt-2">Registrazione Utente</a>
+							</div>
+							<div class="text-center mt-3">
+								<a href="/registerBusiness" class="btn btn-warning w-100">Registrazione Proprietario</a>
+							</div>
+						</form>
 					</div>
-					<button type="submit" class="btn btn-secondary w-100">Login</button>
-					<div class="text-center mt-3">
-
-						<a href="/forgot-password" class="text-primary">Password dimenticata?</a>
-					</div>
-					<hr>
-					<div class="text-center">
-						<a href="/register" class="btn btn-primary w-100">Registrazione Utente</a>
-					</div>
-					<div class="text-center mt-3">
-						<a href="/registerBusiness" class="btn btn-warning w-100">Registrazione Proprietario</a>
-					</div>
-					</form>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<!-- Icone di Bootstrap -->

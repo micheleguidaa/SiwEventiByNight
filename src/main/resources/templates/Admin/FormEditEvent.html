@@ -81,11 +81,10 @@
 							<div class="text-danger" th:if="${#fields.hasErrors('local')}" th:errors="*{local}"></div>
 						</div>
 						<div class="mb-3">
-							<label for="fileImage" class="form-label">Carica nuova immagine dell'evento
-								(opzionale)</label>
+							<label for="fileImage" class="form-label">Immagine dell'evento</label>
 							<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
 								onchange="loadFile(event)">
-							<div class="form-text text-light">Puoi caricare una nuova immagine per l'evento.</div>
+							<div class="form-text text-light">Puoi caricare una nuova immagine per l'evento. (opzionale)</div>
 						</div>
 					</div>
 				</div>

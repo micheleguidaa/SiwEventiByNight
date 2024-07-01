@@ -43,13 +43,13 @@
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label for="name" class="form-label">Nome</label>
-								<input type="text" class="form-control" id="name" name="name" required>
+								<input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il tuo nome" required>
 								<div th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}"
 									class="text-danger"></div>
 							</div>
 							<div class="mb-3">
 								<label for="surname" class="form-label">Cognome</label>
-								<input type="text" class="form-control" id="surname" name="surname" required>
+								<input type="text" class="form-control" id="surname" name="surname" placeholder="Inserisci il tuo cognome" required>
 								<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}"
 									th:style="'color:red'"></span>
 							</div>
@@ -60,11 +60,11 @@
 									th:style="'color:red'"></span>
 							</div>
 							<div class="mb-3">
-								<label for="fileImage" class="form-label">Carica una foto del cuoco (opzionale)</label>
+								<label for="fileImage" class="form-label">Carica una tua foto (opzionale)</label>
 								<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
 									onchange="loadFile(event)">
-								<div class="form-text text-light">Assicurati di caricare una foto chiara e recente del
-									cuoco.
+								<div class="form-text text-light">
+									Assicurati di caricare una foto chiara e recente
 								</div>
 							</div>
 						</div>
@@ -73,16 +73,16 @@
 						<div class="col-md-6 ">
 							<div class="mb-3">
 								<label for="username" class="form-label">Username</label>
-								<input type="text" class="form-control" id="username" name="username" required>
+								<input type="text" class="form-control" id="username" name="username" placeholder="Scegli un username (lo userai per il Login)" required>
 							</div>
 							<div class="mb-3">
 								<label for="email" class="form-label">Email</label>
-								<input type="email" class="form-control" id="email" name="email" required>
+								<input type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua email (name@example.com)" required>
 							</div>
 							<div class="mb-3">
 								<label for="password" class="form-label">Password</label>
 								<div class="input-group">
-									<input type="password" class="form-control" id="password" name="password" required>
+									<input type="password" class="form-control" id="password" name="password" placeholder="Crea una password" required>
 									<button type="button" class="btn btn-outline-secondary btn" id="togglePassword">
 										<i class="bi bi-eye"></i>
 									</button>
@@ -91,7 +91,7 @@
 							<div class="mb-3">
 								<label for="confirmPassword" class="form-label">Conferma Password</label>
 								<div class="input-group">
-									<input type="password" class="form-control" id="confirmPassword" label=""
+									<input type="password" class="form-control" id="confirmPassword" placeholder="Conferma la tua password"
 										name="confirmPassword" required>
 									<button type="button" class="btn btn-outline-secondary btn"
 										id="toggleConfirmPassword">

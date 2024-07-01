@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head th:replace="~{fragments/header :: header(title='SiwEventi - Gestione Utenti')}">
 </head>
+
 <body>
-    <!-- Include la navbar -->
-    <div th:replace="~{fragments/navbar :: navbar}"></div>
+	<!-- Include la navbar -->
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <div class="container mt-5 mb-3">
-        <h1 class="text-center mb-4">Lista degli Utenti</h1>
-        <div class="text-center mb-4">
-            <a class="btn btn-primary btn-lg" href="/register" role="button">Aggiungi Nuovo Utente</a>
-        </div>
-        
-        <div th:if="${users == null || users.isEmpty()}" class="alert alert-warning">
-            Non ci sono utenti nel sistema
-        </div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            <div class="col" th:each="user : ${users}">
-                <div class="card">
-                    <div class="image-container overflow-hidden">
-                        <img th:src="${user.urlImage}" class="user-img" alt="Immagine Utente" />
-                    </div>
-                    <div class="card-footer d-flex flex-column text-center mt-3">
-                        <h5 class="card-title" th:text="${user.name} + ' ' + ${user.surname}">Nome Utente</h5>
-                        <p th:text="'Data di Nascita: ' + ${user.dateOfBirth}">Data di Nascita</p>
-                        <div>
-                            <div th:if="${user.credentials.role == 'ADMIN'}" class="alert alert-success py-2 mb-0">
-                                Questo utente è un <b>Amministratore</b>.
-                            </div>
-                            <div class="d-flex" th:if="${user.credentials.role != 'ADMIN'}">
-                                <a th:href="@{'/admin/update/user/' + ${user.id}}" class="btn btn-primary flex-grow-1 me-1 mb-1">Modifica</a>
-                                <form th:action="@{'/admin/delete/user/' + ${user.id}}" method="post" class="flex-grow-1">
-                                    <button type="submit" class="btn btn-danger w-100">Elimina</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container mt-5 mb-3">
+		<h1 class="text-center mb-4">Lista degli Utenti</h1>
+		<div class="text-center mb-4">
+			<a class="btn btn-primary btn-lg" href="/register" role="button">Aggiungi Nuovo Utente</a>
+		</div>
 
-    <!-- Include il footer -->
-    <div th:replace="~{fragments/footer :: footer}"></div>
+		<div th:if="${users == null || users.isEmpty()}" class="alert alert-warning">
+			Non ci sono utenti nel sistema
+		</div>
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+			<div class="col" th:each="user : ${users}">
+				<div class="card">
+					<div class="image-container overflow-hidden">
+						<img th:src="${user.urlImage}" class="user-img" alt="Immagine Utente" />
+					</div>
+					<div class="card-footer text-center mt-3">
+						<h5 class="card-title" th:text="${user.name} + ' ' + ${user.surname}">Nome Utente</h5>
+						<p th:text="'Data di Nascita: ' + ${user.dateOfBirth}">Data di Nascita</p>
+						<div>
+							<div th:if="${user.credentials.role == 'ADMIN'}" class="alert alert-success py-1 mb-1">
+								<b>Amministratore</b>
+							</div>
+							<div class="d-flex" th:if="${user.credentials.role != 'ADMIN'}">
+								<a th:href="@{'/admin/update/user/' + ${user.id}}"
+									class="btn btn-primary flex-grow-1 me-1 mb-1">Modifica</a>
+								<form th:action="@{'/admin/delete/user/' + ${user.id}}" method="post"
+									class="flex-grow-1">
+									<button type="submit" class="btn btn-danger w-100">Elimina</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <script src="path/to/bootstrap.bundle.min.js"></script>
+	<!-- Include il footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+	<script src="path/to/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
