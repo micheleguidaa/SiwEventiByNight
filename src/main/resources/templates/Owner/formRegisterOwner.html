@@ -55,9 +55,9 @@
                                 <span th:if="${#fields.hasErrors('owner.dateOfBirth')}" th:errors="${owner.dateOfBirth}" th:style="'color:red'"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="fileImage" class="form-label">Carica una foto del proprietario (opzionale)</label>
+                                <label for="fileImage" class="form-label">Carica una tua foto (opzionale)</label>
                                 <input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*" onchange="loadFile(event)">
-                                <div class="form-text text-light">Assicurati di caricare una foto chiara e recente del proprietario.</div>
+                                <div class="form-text text-light">Assicurati di caricare una foto chiara e recente.</div>
                             </div>
                         </div>
 
