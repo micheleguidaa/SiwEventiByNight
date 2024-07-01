@@ -5,12 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import it.uniroma3.siw.model.Event;
 import it.uniroma3.siw.model.Local;
 import it.uniroma3.siw.repository.LocalRepository;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,13 +80,7 @@ public class LocalService {
 
 	@Transactional
 	public List<Local> findAllSortedByName() {
-		List<Local> locals = new ArrayList<>();
-		Iterable<Local> iterable = this.localRepository.findAll();
-		for (Local local : iterable) {
-			locals.add(local);
-		}
-		locals.sort((local1, local2) -> local1.getName().compareToIgnoreCase(local2.getName()));
-		return locals;
+		return localRepository.findAllSortedByName();
 	}
 
 	public List<Local> findByName(String stringa) {

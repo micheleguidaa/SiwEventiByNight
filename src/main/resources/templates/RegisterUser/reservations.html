@@ -8,7 +8,7 @@
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <div class="container my-5">
-        <h2 class="mb-4"> le mie prenotazioni:</h2>
+        <h2 class="mb-4"> Le mie prenotazioni:</h2>
         <div th:if="${CurrentUser.reservations == null || CurrentUser.reservations.isEmpty()}" class="alert alert-info text-center">
             Non ci sono prenotazioni nel sistema
         </div>

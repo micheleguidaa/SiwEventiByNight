@@ -17,15 +17,15 @@ public class Local {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Il nome del locale è obbligatorio")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "L'indirizzo è obbligatorio")
     private String address;
 
     private String urlImage;
 
-    @OneToMany(mappedBy = "local", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "local", cascade = CascadeType.ALL)
     private List<Event> events;
 
     @ManyToOne

@@ -12,9 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-
+import jakarta.validation.constraints.Past;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -29,17 +27,20 @@ public class User {
 
     @NotBlank(message = "Il cognome è obbligatorio")
     private String surname;
+    
+    @NotBlank(message = "L'email è obbligatorio")
+    private String email;
 
-    @PastOrPresent(message = "La data di nascita deve essere nel passato o oggi")
+    @Past(message = "La data di nascita deve essere nel passato")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
 
     private String urlImage;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Credentials credentials;
 
     public Credentials getCredentials() {
