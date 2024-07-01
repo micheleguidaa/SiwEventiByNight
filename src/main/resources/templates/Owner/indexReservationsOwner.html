@@ -10,7 +10,8 @@
     <div class="container my-5">
         <h1 class="my-5 text-center mb-4">Lista delle Prenotazioni per Locali</h1>
 
-        <div th:if="${reservations == null || reservations.isEmpty()}" class="alert alert-info text-center">
+        <!-- Messaggio per quando non ci sono prenotazioni nel sistema -->
+        <div th:if="${!hasReservations}" class="alert alert-info text-center">
             Non ci sono prenotazioni nel sistema
         </div>
 

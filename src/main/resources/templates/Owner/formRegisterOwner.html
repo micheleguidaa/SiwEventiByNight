@@ -68,9 +68,10 @@
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Scegli un username (lo userai per il Login)" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">Email </label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua email (name@example.com)" required>
-                            </div>
+								<span th:if="${#fields.hasErrors('owner.email')}" th:errors="${owner.email}" th:style="'color:red'"></span>
+							</div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input-group">

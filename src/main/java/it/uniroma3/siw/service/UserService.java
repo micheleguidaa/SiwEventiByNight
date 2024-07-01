@@ -90,16 +90,10 @@ public class UserService {
 	}
 
 	@Transactional
-	public void deleteById(Long id) {
-		Optional<User> user = userRepository.findById(id);
-		user.ifPresent(c -> {
-			try {
-				fileService.deleteFile(c.getUrlImage(), UPLOADED_FOLDER);
-				userRepository.deleteById(id);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
-	}
+	public void deleteById(Long id) throws Exception {
+		User user = userRepository.findById(id).orElse(null);
+		fileService.deleteFile(user.getUrlImage(), UPLOADED_FOLDER);
+		userRepository.deleteById(id);
 
+	}
 }

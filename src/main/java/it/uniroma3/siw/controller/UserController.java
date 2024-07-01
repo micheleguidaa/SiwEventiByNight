@@ -22,7 +22,7 @@ public class UserController {
 	}
 	
     @PostMapping("/admin/delete/user/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteUser(@PathVariable("id") Long id) throws Exception{
     	userService.deleteById(id);
         return "redirect:/admin/users";
     }

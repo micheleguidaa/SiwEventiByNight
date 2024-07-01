@@ -1,9 +1,12 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Reservation;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.ReservationRepository;
 import jakarta.validation.Valid;
 
@@ -35,5 +38,13 @@ public class ReservationService {
 	public boolean isUserReservedForEvent(Long userId, Long eventId) {
 		return reservationRepository.existsByUserIdAndEventId(userId, eventId);
 	}
+	
+	public List<Reservation> findByUser(User user){
+		return reservationRepository.findByUser(user);
+	}
+	
+	public boolean doesReservationExistForOwner(Long ownerId) {
+        return reservationRepository.existsByEvent_Local_Owner_Id(ownerId);
+    }
 
 }

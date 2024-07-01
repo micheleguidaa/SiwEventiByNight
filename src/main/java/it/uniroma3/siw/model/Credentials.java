@@ -16,9 +16,8 @@ public class Credentials {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-	@NotBlank(message = "Il cognome è obbligatorio")
+	@NotBlank(message = "L'username è obbligatorio")
     private String username;
-	@NotBlank(message = "La password è obbligatorio")
     private String password;
 	private String role;
 
