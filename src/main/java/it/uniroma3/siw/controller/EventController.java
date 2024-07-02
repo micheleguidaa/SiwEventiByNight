@@ -1,6 +1,10 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Event;
-import it.uniroma3.siw.model.Owner;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.EventService;
 import it.uniroma3.siw.service.LocalService;
 import it.uniroma3.siw.service.ReservationService;
+import it.uniroma3.siw.service.CredentialsService;
 import jakarta.validation.Valid;
 
 import java.io.IOException;
@@ -33,6 +38,9 @@ public class EventController {
 
 	@Autowired
 	private ReservationService reservationService;
+	
+	@Autowired
+	private CredentialsService credentialsService;
 
 	// Mostra la pagina con l'elenco di tutti gli eventi
 	@GetMapping("/events")
@@ -41,7 +49,7 @@ public class EventController {
 		return "events";
 	}
 
-	/* DA RIVEDERE */
+	/* DA RIVEDERE 
 	@GetMapping("/event/{id}")
 	public String showEvent(@PathVariable("id") Long eventId, @ModelAttribute("CurrentUser") User currentUser,
 			Model model) {
@@ -55,6 +63,26 @@ public class EventController {
 		model.addAttribute("event", event);
 		model.addAttribute("isReserved", isReserved);
 
+		return "event";
+	} */
+	
+	@GetMapping("/event/{id}")
+	public String getEvent(@PathVariable("id") Long eventId, Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User currentUser = null;
+		if (authentication != null && authentication.isAuthenticated()
+				&& !(authentication instanceof AnonymousAuthenticationToken)) {
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			Credentials credenziali = credentialsService.getCredentials(userDetails.getUsername());
+			if (credenziali != null) {
+				currentUser = credenziali.getUser();
+			}
+		}
+
+		model.addAttribute("event", eventService.getEvent(eventId));
+		model.addAttribute("isReserved",
+				currentUser != null && reservationService.isUserReservedForEvent(currentUser.getId(), eventId));
+		model.addAttribute("CurrentUser", currentUser);
 		return "event";
 	}
 
