@@ -101,4 +101,13 @@ public class Owner {
     public void setLocals(List<Local> properties) {
         this.locals = properties;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+    
 }

@@ -80,7 +80,7 @@ public class LocalService {
 
 	@Transactional
 	public List<Local> findAllSortedByName() {
-		return localRepository.findAllSortedByName();
+		return localRepository.findAllByOrderByNameAsc();
 	}
 
 	public List<Local> findByName(String stringa) {
