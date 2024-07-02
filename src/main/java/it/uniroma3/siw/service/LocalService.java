@@ -24,7 +24,7 @@ public class LocalService {
 	@Autowired
 	private OwnerService ownerService;
 
-	private static final String UPLOADED_FOLDER = "uploads/locals/";
+	private static final String UPLOADED_FOLDER = "uploads/localsImages/";
 	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoLocal.jpeg";
 
 	@Transactional

@@ -39,13 +39,6 @@ public class ReservationService {
 	public boolean doesReservationExistForOwner(Long ownerId) {
         return reservationRepository.existsByEvent_Local_Owner_Id(ownerId);
     }
-
-	/*public void registerReservation(User user, Event event) {
-	  	Reservation reservation = new Reservation();
-			reservation.setUser(user);
-			reservation.setEvent(event);
-			reservationRepository.save(reservation);
-	}*/
 	
 	public void registerReservation( Long userId, Long eventId) {
 		Reservation reservation = new Reservation();

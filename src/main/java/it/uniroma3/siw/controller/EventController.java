@@ -43,6 +43,9 @@ public class EventController {
 		return "events";
 	}
 	
+	
+	
+	// Mostra la pagina con l'evento selezionato
 	@GetMapping("/event/{id}")
 	public String getEvent(@PathVariable("id") Long eventId, Model model) {
 		User currentUser = this.globalController.getCurrentUser();
@@ -51,6 +54,9 @@ public class EventController {
 		model.addAttribute("CurrentUser", currentUser);
 		return "event";
 	}
+	
+	
+	
 
 	// Mostra la pagina con l'elenco di tutti gli eventi per l'amministratore da admin
 	@GetMapping("/admin/events")

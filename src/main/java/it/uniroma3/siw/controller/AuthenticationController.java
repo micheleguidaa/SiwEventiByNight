@@ -23,6 +23,8 @@ import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.OwnerService;
 import it.uniroma3.siw.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -73,7 +75,11 @@ public class AuthenticationController {
 	}
 
 	@GetMapping("/register")
-	public String formNewUser(Model model) {
+	public String formNewUser(HttpServletRequest request, HttpSession session,Model model) {
+	    String referer = request.getHeader("Referer");
+	    if (referer != null) {
+	        session.setAttribute("prevPage", referer);
+	    }
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 		return "formRegisterUser";
@@ -82,13 +88,19 @@ public class AuthenticationController {
 	@PostMapping("/register")
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult userBindingResult,
 			@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult credentialsBindingResult,
-			@RequestParam("fileImage") MultipartFile file, Model model) throws IOException {
+			@RequestParam("fileImage") MultipartFile file,HttpSession session, Model model) throws IOException {
 		// se user e credential hanno entrambi contenuti validi, memorizza User e the
 		// Credentials nel DB
 		this.credentialsValidator.validate(credentials, credentialsBindingResult);
 		if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
 			userService.registerUser(user, credentials, file);
-			return "formLogin";
+			 // Reindirizza alla pagina precedente
+	        String prevPage = (String) session.getAttribute("prevPage");
+	        if (prevPage != null) {
+	            session.removeAttribute("prevPage"); // Rimuovi l'URL dalla sessione
+	            return "redirect:" + prevPage;
+	        }
+            return "formLogin";
 		}
 		return "formRegisterUser";
 	}

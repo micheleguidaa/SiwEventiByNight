@@ -88,9 +88,9 @@ public class LocalController {
 		return "redirect:/admin/locals";
 	}
 
-	// Gestisce la modifica di un locale esistente per admin
+	// Gestisce la modifica di un locale esistente per admin, la validazione avviene correttamente sneza
 	@PostMapping("/admin/edit/local/{id}")
-	public String editLocal(@PathVariable("id") Long id, @ModelAttribute Local local, BindingResult bindingResult, 
+	public String editLocal(@Valid @PathVariable("id") Long id, @ModelAttribute Local local, BindingResult bindingResult, 
 			@RequestParam("ownerId") Long ownerId, @RequestParam("fileImage") MultipartFile file, Model model) throws IOException {
 		this.localValidator.validate(local, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -124,8 +124,12 @@ public class LocalController {
 
 	// Gestisce l'inserimento di un nuovo locale
 	@PostMapping("/business/add/local")
-	public String addLocalOwner(@ModelAttribute Local local, @RequestParam("fileImage") MultipartFile file,
-			@RequestParam("ownerId") Long ownerId) throws IOException {
+	public String addLocalOwner(@ModelAttribute Local local, BindingResult bindingResult, @RequestParam("fileImage") MultipartFile file,
+			@RequestParam("ownerId") Long ownerId, Model model) throws IOException {
+		this.localValidator.validate(local, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "Owner/FormAddLocalOwner";
+		}
 		localService.saveLocal(local, ownerId, file);
 		return "redirect:/business/locals";
 	}
@@ -140,7 +144,11 @@ public class LocalController {
 	// Gestisce la modifica di un locale esistente
 	@PostMapping("/business/edit/local/{id}")
 	public String editLocalOwner(@PathVariable("id") Long id, @ModelAttribute Local local,
-			@RequestParam("fileImage") MultipartFile file) throws IOException {
+			BindingResult bindingResult, @RequestParam("fileImage") MultipartFile file) throws IOException {
+		this.localValidator.validate(local, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "Owner/FormEditLocalOwner";
+		}
 		localService.updateLocal(id, local, file);
 		return "redirect:/business/locals";
 	}

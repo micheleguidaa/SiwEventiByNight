@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Event;
@@ -20,7 +19,7 @@ public class EventService {
 	@Autowired
 	private FileService fileService;
 
-	private static final String UPLOADED_FOLDER = "uploads/events/";
+	private static final String UPLOADED_FOLDER = "uploads/eventsImages/";
 	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoEvent.jpeg";
 
 	// Ritorna una lista di tutti gli eventi

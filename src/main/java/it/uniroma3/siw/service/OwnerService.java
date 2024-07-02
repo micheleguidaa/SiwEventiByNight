@@ -23,7 +23,7 @@ public class OwnerService {
 	@Autowired
 	private CredentialsService credentialsService;
 
-	private static final String UPLOADED_FOLDER = "uploads/owners/";
+	private static final String UPLOADED_FOLDER = "uploads/ownersImages/";
 	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoUser.jpeg";
 
 

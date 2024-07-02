@@ -11,7 +11,7 @@
 		<div class="text-center mb-4">
 			<a class="btn btn-primary btn-lg" href="/admin/add/event" role="button">Aggiungi Nuovo Evento</a>
 		</div>
-		<div th:if="${events == null || events.isEmpty()}" class="alert alert-warning">
+		<div th:if="${events == null || events.isEmpty()}" class="alert alert-info text-center">
 			Non ci sono eventi nel sistema
 		</div>
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
