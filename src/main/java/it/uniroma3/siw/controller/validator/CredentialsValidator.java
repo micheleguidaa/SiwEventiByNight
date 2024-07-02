@@ -14,9 +14,9 @@ public class CredentialsValidator implements Validator {
 	private CredentialsRepository credentialsRepository;
 
 	@Override
-    public boolean supports(Class<?> clazz) {
-        return Credentials.class.equals(clazz);
-    }
+	public boolean supports(Class<?> clazz) {
+		return Credentials.class.equals(clazz);
+	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
@@ -25,6 +25,6 @@ public class CredentialsValidator implements Validator {
 				&& this.credentialsRepository.existsByUsername(credentials.getUsername())) {
 			errors.reject("credentials.duplicate");
 		}
-	
-}
+
+	}
 }

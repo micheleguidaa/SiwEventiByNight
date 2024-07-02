@@ -20,7 +20,6 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
     
-    /* VEDREMO */
     // Visualizza tutte le prenotazioni dell'utente
     @GetMapping("/reservations")
     public String showUserReservation(@ModelAttribute("CurrentUser") User user, Model model) {
@@ -49,13 +48,6 @@ public class ReservationController {
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
-
-    /* DA FIXARE 
-    @PostMapping("/addReservation")
-    public String addReservation(@RequestParam("event") Event event, @RequestParam("user") User user, Model model) {
-        reservationService.registerReservation(user, event);
-        return "redirect:/reservations";
-    }*/
     
     @PostMapping("/addReservation")
     public String addReservation( @RequestParam("eventId") Long eventId, @RequestParam("userId") Long userId, Model model) {

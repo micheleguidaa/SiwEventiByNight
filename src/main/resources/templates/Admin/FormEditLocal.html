@@ -10,13 +10,19 @@
 	<div class="container my-5 w-75">
 		<h2 class="text-center  my-5 ">Modifica Locale</h2>
 		<div class="container form-container mt-5 mb-5">
-			<form th:action="@{/admin/edit/local/{id}(id=${local.id})}" method="post" enctype="multipart/form-data">
+			<form th:action="@{/admin/edit/local/{id}(id=${local.id})}" method="post" enctype="multipart/form-data"
+				th:object="${local}">
+
+				<!-- gli errori globali -->
+				<div th:if="${#fields.hasGlobalErrors()}" class="text-danger text-center">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+				</div>
 				<div class="row">
 					<!-- Colonna Immagine -->
 					<div class="col-md-4">
 						<div class="card mb-4">
 							<div class="card-header">
-								<h5 class="card-title mb-0">Immagine del Locale</h5>
+								<h5 class="card-title mb-0">Immagine2 del Locale</h5>
 							</div>
 							<div class="card-body p-0">
 								<div class="image-container">
@@ -42,7 +48,8 @@
 						<div class="mb-3">
 							<label for="ownerId" class="form-label">Proprietario</label>
 							<select class="form-control" name="ownerId" required>
-								<option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.name}" th:selected="${local.owner.id == owner.id}">
+								<option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.name}"
+									th:selected="${local.owner.id == owner.id}">
 								</option>
 							</select>
 						</div>
