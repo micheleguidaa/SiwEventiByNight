@@ -31,15 +31,9 @@ public class ReservationService {
 		reservationRepository.deleteById(id);
 	}
 	
-	/*
-	public boolean isUserReservedForEvent(User user, Long eventId) {
-		return reservationRepository.existsByUserAndEventId(user, eventId);
-	} */
-	
 	public boolean isUserReservedForEvent(Long userId, Long eventId) {
 		return reservationRepository.existsByUserIdAndEventId(userId, eventId);
-	}
-	
+	} 
 	public List<Reservation> findByUser(User user){
 		return reservationRepository.findByUser(user);
 	}
