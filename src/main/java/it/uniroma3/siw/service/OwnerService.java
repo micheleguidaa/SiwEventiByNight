@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,11 @@ public class OwnerService {
 
 	public Owner getOwner(Long ownerId) {
 		return ownerRepository.findById(ownerId).orElse(null);
+	}
+	
+	@Transactional
+	public List<Owner> findAllSortedByName() {
+		return ownerRepository.findAllByOrderByNameAsc();
 	}
 
 

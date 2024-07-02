@@ -40,10 +40,18 @@
 								th:value="${local.address}" required>
 						</div>
 						<div class="mb-3">
+							<label for="ownerId" class="form-label">Proprietario</label>
+							<select class="form-control" name="ownerId" required>
+								<option th:each="owner : ${owners}" th:value="${owner.id}" th:text="${owner.name}" th:selected="${local.owner.id == owner.id}">
+								</option>
+							</select>
+						</div>
+						<div class="mb-3">
 							<label for="fileImage" class="form-label">Immagine del locale</label>
 							<input type="file" class="form-control" id="fileImage" name="fileImage" accept="image/*"
 								onchange="loadFile(event)">
-							<div class="form-text text-light">Puoi caricare una nuova immagine del locale. (opzionale)</div>
+							<div class="form-text text-light">Puoi caricare una nuova immagine del locale. (opzionale)
+							</div>
 						</div>
 						<button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
 					</div>

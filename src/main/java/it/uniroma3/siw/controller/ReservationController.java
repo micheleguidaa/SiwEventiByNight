@@ -43,13 +43,13 @@ public class ReservationController {
         return "Owner/indexReservationsOwner";
     }
     
-    /* DA RIVEDERE */
     @PostMapping("/addReservation")
-    public String addReservation(@Valid @RequestParam("event") Event event, @RequestParam("CurrentUser") User user, Model model) {
-        reservationService.registerReservation(user, event);
+    public String addReservation(@Valid @RequestParam("eventId") Long eventId, @RequestParam("userId") Long userId, Model model) {
+        reservationService.registerReservation(userId, eventId);
         return "redirect:/reservations";
     }
 
+    
     @PostMapping("/delete/reservation/{id}")
     public String deleteReservation(@PathVariable("id") Long id) {
         reservationService.deleteById(id);
