@@ -47,7 +47,7 @@
 						<a class="nav-link" th:if="${role == 'ADMIN'}" href="/admin/users">Utenti</a>
 					</li>
 					<!-- Fine Elementi visibili per admin -->
-					
+
 					<!-- Inizio Elementi visibili per proprietario -->
 					<li class="nav-item">
 						<a class="nav-link" th:if="${role == 'BUSINESS'}" href="/business/locals">I Miei Locali</a>
@@ -84,15 +84,16 @@
 							aria-expanded="false">
 							<!-- Se l'immagine è presente -->
 							<div>
-							<img th:if="${CurrentUser != null}" th:src="@{${CurrentUser.urlImage}}" alt="Account Image"
-								class="account-icon my-2">
-								
-							<img th:if="${CurrentOwner != null}" th:src="@{${CurrentOwner.urlImage}}" alt="Account Image"
-								class="account-icon my-2">
-								</div>
+								<img th:if="${CurrentUser != null}" th:src="@{${CurrentUser.urlImage}}"
+									alt="Account Image" class="account-icon my-2">
+
+								<img th:if="${CurrentOwner != null}" th:src="@{${CurrentOwner.urlImage}}"
+									alt="Account Image" class="account-icon my-2">
+							</div>
 						</a>
 						<ul class="dropdown-menu bg-dark" aria-labelledby="userDropdown">
-							<div th:text="${userDetails.username}" class="p-2 ms-2 text-capitalize text-light">Profile</div>
+							<div th:text="${userDetails.username}" class="p-2 ms-2 text-capitalize text-light">Profile
+							</div>
 							<hr class="dropdown-divider">
 							<li><a class="dropdown-item text-danger bg-dark" href="/logout">Logout</a></li>
 						</ul>

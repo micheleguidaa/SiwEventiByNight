@@ -9,7 +9,11 @@
 	<div class="container my-5 w-75">
 		<h2 class="text-center my-3">Aggiungi Locale</h2>
 		<div class="container form-container mt-5 mb-5">
-			<form th:action="@{/business/add/local}" method="post" enctype="multipart/form-data">
+			<form th:action="@{/business/add/local}" method="post" enctype="multipart/form-data" th:object="${local}">
+				<!-- gli errori globali -->
+				<div th:if="${#fields.hasGlobalErrors()}" class="text-danger text-center">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+				</div>
 
 				<div class="row">
 					<!-- Colonna Immagine -->

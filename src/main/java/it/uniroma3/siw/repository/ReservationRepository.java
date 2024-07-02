@@ -10,6 +10,7 @@ import it.uniroma3.siw.model.User;
 
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
 	public List<Reservation> findByUser(User user);
-	public boolean existsByUserAndEventId(User user,Long eventId);
+	/* public boolean existsByUserAndEventId(User user,Long eventId); */
+	public boolean existsByUserIdAndEventId(Long userId,Long eventId);
 	public boolean existsByEvent_Local_Owner_Id(Long ownerId);
 }

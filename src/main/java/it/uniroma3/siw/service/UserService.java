@@ -30,7 +30,7 @@ public class UserService {
 	@Autowired
 	private CredentialsService credentialsService;
 
-	private static final String UPLOADED_FOLDER = "uploads/utenti2/";
+	private static final String UPLOADED_FOLDER = "uploads/utentiImages/";
 	private static final String DEFAULT_IMAGE = "/images/default/senzaFotoUser.jpeg";
 
 	/**
