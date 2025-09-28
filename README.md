@@ -68,11 +68,11 @@ Con pochi click puoi scoprire eventi, prenotare un posto, oppure – se sei prop
 4. Avvia il progetto:
    ```bash
    ./mvnw spring-boot:run
-````
+``
 
 5. Vai su `http://localhost:8080` e inizia a navigare ✨
 
----
+
 
 ## 📂 Struttura del progetto
 
