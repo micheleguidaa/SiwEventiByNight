@@ -72,7 +72,7 @@ Con pochi click puoi scoprire eventi, prenotare un posto, oppure – se sei prop
 
 5. Vai su `http://localhost:8080` e inizia a navigare ✨
 
-
+---
 
 ## 📂 Struttura del progetto
 
@@ -89,10 +89,28 @@ SiwEventiByNight/
 
 ---
 
+## 🛠️ Tech Stack
+
+![Java](https://img.shields.io/badge/Java-17-orange?logo=java\&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen?logo=springboot)
+![Spring Security](https://img.shields.io/badge/Spring%20Security-enabled-darkgreen?logo=springsecurity)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-templates-brightgreen?logo=thymeleaf)
+![Maven](https://img.shields.io/badge/Maven-3+-C71A36?logo=apachemaven)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue?logo=postgresql)
+
+---
+
 ## 📌 Note
 
 * Dipendenze test già incluse: `spring-boot-starter-test`, `spring-security-test`
 * Test automatizzati ancora da implementare → cartella `src/test/java`
+
+---
+
+## 👥 Autori
+
+* [micheleguidaa](https://github.com/micheleguidaa)
+* [AlessandroSchmitt](https://github.com/AlessandroSchmitt)
 
 ---
 
