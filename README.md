@@ -114,11 +114,4 @@ SiwEventiByNight/
 
 ---
 
-## 📜 Licenza
-
-Distribuito sotto licenza **MIT**.
-Puoi usarlo liberamente, modificarlo e condividerlo.
-
----
-
 Un gestionale **leggero, potente e intuitivo** per far brillare la tua notte 🌙🎶
